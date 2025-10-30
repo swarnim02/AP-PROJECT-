@@ -7,13 +7,13 @@ app.use(express.json());
 let prisma = new PrismaClient();
 
 app.post("/signup", async (req, res) => {
-  let username = req.body.username;
+  let name = req.body.user;
   let email = req.body.email;
   let password = req.body.password;
-  if (username && email && password) {
+  if (name && email && password) {
     let a = await prisma.user.findFirst({
       where: {
-        OR: [{ username: username }, { email: email }],
+        OR: [{ name: name }, { email: email }],
       },
     });
     if (a) {
@@ -21,7 +21,7 @@ app.post("/signup", async (req, res) => {
     } else {
       let b = await prisma.user.create({
         data: {
-          username: username,
+          name: name,
           email: email,
           password: await bcrypt.hash(password, 10),
         },
@@ -34,14 +34,14 @@ app.post("/signup", async (req, res) => {
 });
 
 app.post('/login', async(req, res) => {
-    let username = req.body.username
+    let name = req.body.name
     let email = req.body.email
     let password = req.body.password 
-    if ((username && password) || (email && password)){
+    if ((name && password) || (email && password)){
         let user = await prisma.user.findFirst({
             where : {
                 OR : [
-                    {username : username},
+                    {name : name},
                     {email : email}
                 ]
             }
@@ -53,7 +53,7 @@ app.post('/login', async(req, res) => {
         else{
             let validate = await bcrypt.compare(password, user.password)
             if (validate){
-                let token = jwt.sign({username : user.username, role : user.role}, "Rps@220068", {expiresIn : "5h"})
+                let token = jwt.sign({name : user.name, role : user.role}, "Rps@220068", {expiresIn : "5h"})
                 res.status(200).json({"token" : token})
             }
             else{
