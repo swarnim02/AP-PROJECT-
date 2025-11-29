@@ -13,11 +13,11 @@ npm start
 ```bash
 cd frontend
 npm start
-# Should open http://localhost:3000
+# Should open http://localhost:5174
 ```
 
 ### 3. Test Registration
-1. Go to http://localhost:3000
+1. Go to http://localhost:5174
 2. Click "Register"
 3. Fill form:
    - Name: Test User
