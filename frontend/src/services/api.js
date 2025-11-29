@@ -65,6 +65,37 @@ const api = {
       },
     });
     return response.json();
+  },
+
+  // Admin APIs
+  async getAllUsers() {
+    const token = localStorage.getItem('token');
+    const response = await fetch(`${API_BASE_URL}/admin/users`, {
+      headers: {
+        'Authorization': `Bearer ${token}`,
+      },
+    });
+    return response.json();
+  },
+
+  async getAllRooms() {
+    const token = localStorage.getItem('token');
+    const response = await fetch(`${API_BASE_URL}/admin/rooms`, {
+      headers: {
+        'Authorization': `Bearer ${token}`,
+      },
+    });
+    return response.json();
+  },
+
+  async getAllApplications() {
+    const token = localStorage.getItem('token');
+    const response = await fetch(`${API_BASE_URL}/allotment/all`, {
+      headers: {
+        'Authorization': `Bearer ${token}`,
+      },
+    });
+    return response.json();
   }
 };
 
