@@ -73,10 +73,25 @@ function Login() {
         localStorage.setItem('token', result.token);
         navigate('/dashboard');
       } else {
-        setError(result.message || 'Login failed');
+        // Handle specific error messages from backend
+        if (result.message === 'User not found') {
+          setError('No account found with this email address');
+        } else if (result.message === 'Invalid password') {
+          setError('Incorrect password. Please try again');
+        } else if (result.message && result.message.includes('Email and password required')) {
+          setError('Please fill in both email and password');
+        } else {
+          setError(result.message || 'Login failed. Please check your credentials');
+        }
       }
     } catch (err) {
-      setError('Network error. Please try again.');
+      if (err.message.includes('HTTP error! status: 400')) {
+        setError('Invalid login credentials');
+      } else if (err.message.includes('HTTP error! status: 500')) {
+        setError('Server error. Please try again later');
+      } else {
+        setError('Network error. Please check your connection');
+      }
     }
     setLoading(false);
   };
@@ -135,6 +150,7 @@ function Signup() {
     password: ''
   });
   const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
@@ -150,6 +166,19 @@ function Signup() {
     setLoading(true);
     setError('');
     
+    // Client-side validation
+    if (formData.password.length < 6) {
+      setError('Password must be at least 6 characters long');
+      setLoading(false);
+      return;
+    }
+    
+    if (!formData.email.includes('@')) {
+      setError('Please enter a valid email address');
+      setLoading(false);
+      return;
+    }
+    
     try {
       const userData = {
         ...formData,
@@ -158,12 +187,30 @@ function Signup() {
       };
       const result = await api.register(userData);
       if (result.user) {
-        navigate('/login');
+        setSuccess('Registration successful! Redirecting to login...');
+        setTimeout(() => navigate('/login'), 2000);
       } else {
-        setError(result.message || 'Registration failed');
+        // Handle specific error messages from backend
+        if (result.message === 'Email already exists') {
+          setError('An account with this email already exists. Please login instead');
+        } else if (result.message && result.message.includes('All fields')) {
+          setError('Please fill in all required fields');
+        } else if (result.message && result.message.includes('Password must be')) {
+          setError('Password must be at least 6 characters long');
+        } else if (result.message && result.message.includes('Year must be')) {
+          setError('Please select a valid year (1-4)');
+        } else {
+          setError(result.message || 'Registration failed. Please try again');
+        }
       }
     } catch (err) {
-      setError('Network error. Please try again.');
+      if (err.message.includes('HTTP error! status: 400')) {
+        setError('Invalid registration data. Please check all fields');
+      } else if (err.message.includes('HTTP error! status: 500')) {
+        setError('Server error. Please try again later');
+      } else {
+        setError('Network error. Please check your connection');
+      }
     }
     setLoading(false);
   };
@@ -178,6 +225,7 @@ function Signup() {
         
         <form className="auth-form" onSubmit={handleSubmit}>
           {error && <div className="error-message">{error}</div>}
+          {success && <div className="success-message">{success}</div>}
           
           <div className="form-group">
             <label>Full Name</label>
