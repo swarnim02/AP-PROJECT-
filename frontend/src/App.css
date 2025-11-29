@@ -1,0 +1,193 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.5;
+  color: #000;
+  background: #fff;
+}
+
+.landing {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  background: #000;
+  color: #fff;
+  padding: 40px 20px;
+  text-align: center;
+  border-bottom: 2px solid #333;
+}
+
+.header h1 {
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  letter-spacing: -0.5px;
+}
+
+.header p {
+  font-size: 16px;
+  opacity: 0.8;
+}
+
+.main {
+  flex: 1;
+  padding: 40px 20px;
+}
+
+.content {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.intro {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.intro h2 {
+  font-size: 24px;
+  font-weight: 500;
+  margin-bottom: 12px;
+  color: #000;
+}
+
+.intro p {
+  font-size: 16px;
+  color: #666;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.modules {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  margin-bottom: 50px;
+}
+
+.module {
+  border: 1px solid #ddd;
+  padding: 30px;
+  background: #fafafa;
+}
+
+.module h3 {
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 16px;
+  color: #000;
+}
+
+.module ul {
+  list-style: none;
+}
+
+.module li {
+  padding: 6px 0;
+  color: #555;
+  position: relative;
+  padding-left: 16px;
+}
+
+.module li:before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: #000;
+}
+
+.auth-section {
+  text-align: center;
+  padding: 30px 0;
+  border-top: 1px solid #eee;
+}
+
+.auth-buttons {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
+
+.btn {
+  padding: 12px 32px;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 14px;
+  border: 1px solid #000;
+  transition: all 0.2s;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.login-btn {
+  background: #000;
+  color: #fff;
+}
+
+.login-btn:hover {
+  background: #333;
+}
+
+.signup-btn {
+  background: #fff;
+  color: #000;
+}
+
+.signup-btn:hover {
+  background: #f5f5f5;
+}
+
+.footer {
+  background: #f8f8f8;
+  padding: 20px;
+  text-align: center;
+  border-top: 1px solid #eee;
+  color: #666;
+  font-size: 14px;
+}
+
+.page {
+  max-width: 600px;
+  margin: 60px auto;
+  padding: 40px;
+  text-align: center;
+  border: 1px solid #ddd;
+}
+
+.page h2 {
+  font-size: 24px;
+  margin-bottom: 16px;
+  color: #000;
+}
+
+.page p {
+  color: #666;
+}
+
+@media (max-width: 768px) {
+  .modules {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .auth-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .header h1 {
+    font-size: 24px;
+  }
+  
+  .content {
+    padding: 0 10px;
+  }
+}
