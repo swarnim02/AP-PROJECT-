@@ -40,3 +40,26 @@ exports.signup = async (req, res) => {
     }
   };
   
+// LOGIN
+exports.login = async (req, res) => {
+    try {
+      const { email, password } = req.body;
+  
+      const err = validateLogin(email, password);
+      if (err) return res.status(400).json({ message: err });
+  
+      const user = await prisma.user.findUnique({ where: { email } });
+      if (!user) return res.status(400).json({ message: "User not found" });
+  
+      const valid = await bcrypt.compare(password, user.password);
+      if (!valid) return res.status(400).json({ message: "Invalid password" });
+  
+      const token = generateToken(user);
+  
+      res.json({ message: "Login successful", token });
+  
+    } catch (err) {
+      console.log(err);
+      res.status(500).json({ error: err });
+    }
+  };
