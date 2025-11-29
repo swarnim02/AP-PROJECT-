@@ -723,6 +723,47 @@ body {
   font-style: italic;
 }
 
+/* User Management Styles */
+.users-table {
+  border: 1px solid #ddd;
+}
+
+.table-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 80px 80px;
+  background: #000;
+  color: #fff;
+  padding: 12px 16px;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.table-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 80px 80px;
+  padding: 12px 16px;
+  border-bottom: 1px solid #ddd;
+  font-size: 14px;
+  align-items: center;
+}
+
+.table-row:last-child {
+  border-bottom: none;
+}
+
+.table-row:hover {
+  background: #fafafa;
+}
+
+.role-badge {
+  background: #f0f0f0;
+  padding: 4px 8px;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  text-align: center;
+}
+
 @media (max-width: 768px) {
   .dashboard-body {
     flex-direction: column;
