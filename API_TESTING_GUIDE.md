@@ -2,7 +2,7 @@
 
 ## Prerequisites
 1. Start the server: `npm start`
-2. Server runs on: `http://localhost:5000`
+2. Server runs on: `http://localhost:5002`
 3. Use Postman, curl, or any API testing tool
 
 ---
@@ -10,7 +10,7 @@
 ## 🔐 Authentication Module (Ishita's Work)
 
 ### 1. Student Signup
-**POST** `http://localhost:5000/auth/signup`
+**POST** `http://localhost:5002/auth/signup`
 
 **Headers:**
 ```
@@ -45,7 +45,7 @@ Content-Type: application/json
 ```
 
 ### 2. Admin Signup
-**POST** `http://localhost:5000/auth/signup`
+**POST** `http://localhost:5002/auth/signup`
 
 **Body (JSON):**
 ```json
@@ -60,7 +60,7 @@ Content-Type: application/json
 ```
 
 ### 3. Login (Student/Admin)
-**POST** `http://localhost:5000/auth/login`
+**POST** `http://localhost:5002/auth/login`
 
 **Body (JSON):**
 ```json
@@ -90,7 +90,7 @@ Authorization: Bearer YOUR_JWT_TOKEN_HERE
 ```
 
 ### 4. Create Room (Admin Only)
-**POST** `http://localhost:5000/rooms/create`
+**POST** `http://localhost:5002/rooms/create`
 
 **Headers:**
 ```
@@ -122,7 +122,7 @@ Authorization: Bearer YOUR_JWT_TOKEN_HERE
 ```
 
 ### 5. Get All Rooms
-**GET** `http://localhost:5000/rooms/all`
+**GET** `http://localhost:5002/rooms/all`
 
 **Headers:**
 ```
@@ -130,7 +130,7 @@ Authorization: Bearer YOUR_JWT_TOKEN_HERE
 ```
 
 ### 6. Get Room by ID
-**GET** `http://localhost:5000/rooms/1`
+**GET** `http://localhost:5002/rooms/1`
 
 **Headers:**
 ```
@@ -138,7 +138,7 @@ Authorization: Bearer YOUR_JWT_TOKEN_HERE
 ```
 
 ### 7. Update Room (Admin Only)
-**PUT** `http://localhost:5000/rooms/update/1`
+**PUT** `http://localhost:5002/rooms/update/1`
 
 **Headers:**
 ```
@@ -155,7 +155,7 @@ Authorization: Bearer YOUR_JWT_TOKEN_HERE
 ```
 
 ### 8. Delete Room (Admin Only)
-**DELETE** `http://localhost:5000/rooms/delete/1`
+**DELETE** `http://localhost:5002/rooms/delete/1`
 
 **Headers:**
 ```
@@ -167,7 +167,7 @@ Authorization: Bearer YOUR_JWT_TOKEN_HERE
 ## 🎯 Allotment Module (Ansh's Work)
 
 ### 9. Apply for Room (Student)
-**POST** `http://localhost:5000/allotment/apply/1`
+**POST** `http://localhost:5002/allotment/apply/1`
 
 **Headers:**
 ```
@@ -190,7 +190,7 @@ Authorization: Bearer YOUR_JWT_TOKEN_HERE
 ```
 
 ### 10. Get My Allotment (Student)
-**GET** `http://localhost:5000/allotment/my`
+**GET** `http://localhost:5002/allotment/my`
 
 **Headers:**
 ```
@@ -198,7 +198,7 @@ Authorization: Bearer YOUR_JWT_TOKEN_HERE
 ```
 
 ### 11. Approve Allotment (Admin)
-**POST** `http://localhost:5000/allotment/approve/1`
+**POST** `http://localhost:5002/allotment/approve/1`
 
 **Headers:**
 ```
@@ -208,7 +208,7 @@ Authorization: Bearer YOUR_JWT_TOKEN_HERE
 **Body:** Empty `{}`
 
 ### 12. Get All Allotments (Admin)
-**GET** `http://localhost:5000/allotment/all`
+**GET** `http://localhost:5002/allotment/all`
 
 **Headers:**
 ```
@@ -220,7 +220,7 @@ Authorization: Bearer YOUR_JWT_TOKEN_HERE
 ## 👨‍💼 Admin Module (Core App)
 
 ### 13. Get All Users (Admin)
-**GET** `http://localhost:5000/admin/users`
+**GET** `http://localhost:5002/admin/users`
 
 **Headers:**
 ```
@@ -228,7 +228,7 @@ Authorization: Bearer YOUR_JWT_TOKEN_HERE
 ```
 
 ### 14. Get All Rooms (Admin)
-**GET** `http://localhost:5000/admin/rooms`
+**GET** `http://localhost:5002/admin/rooms`
 
 **Headers:**
 ```
@@ -236,7 +236,7 @@ Authorization: Bearer YOUR_JWT_TOKEN_HERE
 ```
 
 ### 15. Get All Allotments (Admin)
-**GET** `http://localhost:5000/admin/allotments`
+**GET** `http://localhost:5002/admin/allotments`
 
 **Headers:**
 ```
@@ -333,15 +333,15 @@ Authorization: Bearer YOUR_JWT_TOKEN_HERE
 npm start
 
 # Test basic endpoint
-curl http://localhost:5000/
+curl http://localhost:5002/
 
 # Test signup
-curl -X POST http://localhost:5000/auth/signup \
+curl -X POST http://localhost:5002/auth/signup \
   -H "Content-Type: application/json" \
   -d '{"name":"Test User","email":"test@test.com","password":"password123","college":"Test College","year":2}'
 
 # Test login
-curl -X POST http://localhost:5000/auth/login \
+curl -X POST http://localhost:5002/auth/login \
   -H "Content-Type: application/json" \
   -d '{"email":"test@test.com","password":"password123"}'
 ```
