@@ -260,6 +260,24 @@ body {
   color: #666;
 }
 
+.register-container {
+  max-width: 450px;
+}
+
+.form-group select {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  font-size: 14px;
+  background: #fff;
+  cursor: pointer;
+}
+
+.form-group select:focus {
+  outline: none;
+  border-color: #000;
+}
+
 .page {
   max-width: 600px;
   margin: 60px auto;

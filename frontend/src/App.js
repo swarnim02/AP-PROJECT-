@@ -91,7 +91,70 @@ function Login() {
 }
 
 function Signup() {
-  return <div className="page"><h2>Register</h2><p>Registration page under development</p></div>;
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // TODO: Add registration logic
+    console.log('Registration submitted');
+  };
+
+  return (
+    <div className="auth-page">
+      <div className="auth-container register-container">
+        <div className="auth-header">
+          <h2>Register</h2>
+          <p>Create your account</p>
+        </div>
+        
+        <form className="auth-form" onSubmit={handleSubmit}>
+          <div className="form-group">
+            <label>Full Name</label>
+            <input type="text" required />
+          </div>
+          
+          <div className="form-group">
+            <label>Email Address</label>
+            <input type="email" required />
+          </div>
+          
+          <div className="form-group">
+            <label>College</label>
+            <input type="text" required />
+          </div>
+          
+          <div className="form-group">
+            <label>Year</label>
+            <select required>
+              <option value="">Select Year</option>
+              <option value="1">1st Year</option>
+              <option value="2">2nd Year</option>
+              <option value="3">3rd Year</option>
+              <option value="4">4th Year</option>
+            </select>
+          </div>
+          
+          <div className="form-group">
+            <label>Password</label>
+            <input type="password" required />
+          </div>
+          
+          <div className="form-group">
+            <label>Role</label>
+            <select required>
+              <option value="student">Student</option>
+              <option value="admin">Admin</option>
+            </select>
+          </div>
+          
+          <button type="submit" className="submit-btn">Register</button>
+        </form>
+        
+        <div className="auth-footer">
+          <p>Already have an account? <Link to="/login">Login here</Link></p>
+          <Link to="/" className="back-link">Back to Home</Link>
+        </div>
+      </div>
+    </div>
+  );
 }
 
 function App() {
