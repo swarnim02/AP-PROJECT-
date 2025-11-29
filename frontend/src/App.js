@@ -1,5 +1,8 @@
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 import './App.css';
+import api from './services/api';
+import Dashboard from './components/Dashboard';
 
 function Landing() {
   return (
@@ -53,10 +56,29 @@ function Landing() {
 }
 
 function Login() {
-  const handleSubmit = (e) => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // TODO: Add login logic
-    console.log('Login submitted');
+    setLoading(true);
+    setError('');
+    
+    try {
+      const result = await api.login(email, password);
+      if (result.token) {
+        localStorage.setItem('token', result.token);
+        navigate('/dashboard');
+      } else {
+        setError(result.message || 'Login failed');
+      }
+    } catch (err) {
+      setError('Network error. Please try again.');
+    }
+    setLoading(false);
   };
 
   return (
@@ -68,17 +90,31 @@ function Login() {
         </div>
         
         <form className="auth-form" onSubmit={handleSubmit}>
+          {error && <div className="error-message">{error}</div>}
+          
           <div className="form-group">
             <label>Email Address</label>
-            <input type="email" required />
+            <input 
+              type="email" 
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required 
+            />
           </div>
           
           <div className="form-group">
             <label>Password</label>
-            <input type="password" required />
+            <input 
+              type="password" 
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required 
+            />
           </div>
           
-          <button type="submit" className="submit-btn">Login</button>
+          <button type="submit" className="submit-btn" disabled={loading}>
+            {loading ? 'Logging in...' : 'Login'}
+          </button>
         </form>
         
         <div className="auth-footer">
@@ -91,10 +127,45 @@ function Login() {
 }
 
 function Signup() {
-  const handleSubmit = (e) => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    college: '',
+    year: '',
+    password: ''
+  });
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // TODO: Add registration logic
-    console.log('Registration submitted');
+    setLoading(true);
+    setError('');
+    
+    try {
+      const userData = {
+        ...formData,
+        year: parseInt(formData.year),
+        role: 'student'
+      };
+      const result = await api.register(userData);
+      if (result.user) {
+        navigate('/login');
+      } else {
+        setError(result.message || 'Registration failed');
+      }
+    } catch (err) {
+      setError('Network error. Please try again.');
+    }
+    setLoading(false);
   };
 
   return (
@@ -106,24 +177,49 @@ function Signup() {
         </div>
         
         <form className="auth-form" onSubmit={handleSubmit}>
+          {error && <div className="error-message">{error}</div>}
+          
           <div className="form-group">
             <label>Full Name</label>
-            <input type="text" required />
+            <input 
+              type="text" 
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              required 
+            />
           </div>
           
           <div className="form-group">
             <label>Email Address</label>
-            <input type="email" required />
+            <input 
+              type="email" 
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              required 
+            />
           </div>
           
           <div className="form-group">
             <label>College</label>
-            <input type="text" required />
+            <input 
+              type="text" 
+              name="college"
+              value={formData.college}
+              onChange={handleChange}
+              required 
+            />
           </div>
           
           <div className="form-group">
             <label>Year</label>
-            <select required>
+            <select 
+              name="year"
+              value={formData.year}
+              onChange={handleChange}
+              required
+            >
               <option value="">Select Year</option>
               <option value="1">1st Year</option>
               <option value="2">2nd Year</option>
@@ -134,18 +230,18 @@ function Signup() {
           
           <div className="form-group">
             <label>Password</label>
-            <input type="password" required />
+            <input 
+              type="password" 
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+              required 
+            />
           </div>
           
-          <div className="form-group">
-            <label>Role</label>
-            <select required>
-              <option value="student">Student</option>
-              <option value="admin">Admin</option>
-            </select>
-          </div>
-          
-          <button type="submit" className="submit-btn">Register</button>
+          <button type="submit" className="submit-btn" disabled={loading}>
+            {loading ? 'Registering...' : 'Register'}
+          </button>
         </form>
         
         <div className="auth-footer">
@@ -164,6 +260,7 @@ function App() {
         <Route path="/" element={<Landing />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/dashboard" element={<Dashboard />} />
       </Routes>
     </Router>
   );
