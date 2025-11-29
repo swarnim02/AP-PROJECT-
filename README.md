@@ -1,178 +1,292 @@
-# AP-PROJECT-
+# 🏠 Hostel Room Allotment System
 
-📑 **Project Report & Plan**  
-**Project Title:** Hostel Room Allotment System
+A comprehensive full-stack web application for managing hostel room allocations with separate student and admin portals.
 
-## 1. Objective
-To build a Hostel Room Allotment System backend that manages student registrations, authentication, hostel room availability, allotments, and admin controls.
+## 🚀 Project Overview
 
-The evaluation will focus on:
-- Code quality in backend
-- Database schema design
-- API endpoints
-- GitHub commits by each member
+**Team:** Devs  
+**Tech Stack:** Node.js + Express + React + Prisma + MySQL  
+**Architecture:** Full-stack web application with REST API
 
-## 2. Tech Stack
-- **Backend Framework:** Node.js + Express.js
-- **Database ORM:** Prisma
-- **Database:** MySQL
+## 📁 Project Structure
 
-## 3. Core Features
+```
+AP-PROJECT-/
+├── backend/                 # Node.js + Express API
+│   ├── src/
+│   │   ├── modules/
+│   │   │   ├── auth/        # Authentication (Ishita)
+│   │   │   ├── rooms/       # Room Management (Swarnim)
+│   │   │   ├── allotments/  # Allotment System (Ansh)
+│   │   │   └── admin/       # Admin Panel (Core)
+│   │   ├── middleware/      # JWT Authentication
+│   │   └── app.js           # Express App
+│   ├── prisma/              # Database Schema
+│   └── server.js            # Server Entry Point
+│
+├── frontend/                # React Application
+│   ├── src/
+│   │   ├── components/      # React Components
+│   │   ├── services/        # API Integration
+│   │   └── App.js           # Main App
+│   └── public/              # Static Assets
+│
+└── docs/                    # Documentation
+```
 
-### Authentication (JWT-based)
-- Student signup/login
-- Admin login
+## 🛠️ Tech Stack
 
-### Student APIs
-- View available rooms
-- Apply for a room
-- View allotted room
+### Backend
+- **Framework:** Node.js + Express.js
+- **Database:** MySQL with Prisma ORM
+- **Authentication:** JWT (JSON Web Tokens)
+- **API:** RESTful endpoints
+- **Port:** 5002
 
-### Admin APIs
-- Manage rooms (CRUD)
-- Approve/reject allotments
-- View all allotments
+### Frontend
+- **Framework:** React 18
+- **Routing:** React Router DOM
+- **Styling:** Pure CSS (Black & White Theme)
+- **HTTP Client:** Fetch API
+- **Port:** 5174
 
-### Room Management
-- Track availability
-- Ensure no duplicate allotments
+## 🔧 Installation & Setup
 
-## 4. Database Schema (Prisma + MySQL)
+### Prerequisites
+- Node.js (v16+)
+- MySQL Database
+- Git
+
+### Backend Setup
+```bash
+cd backend
+npm install
+npx prisma db push
+npm start
+```
+
+### Frontend Setup
+```bash
+cd frontend
+npm install
+npm start
+```
+
+### Environment Variables
+Create `.env` in backend folder:
+```env
+DATABASE_URL="mysql://username:password@localhost:3306/hostel_room_allotment"
+JWT_SECRET="your_jwt_secret_key"
+PORT=5002
+```
+
+## 🎯 Features
+
+### 🔐 Authentication System
+- Student registration and login
+- JWT-based authentication
+- Role-based access control
+- Secure password hashing
+
+### 👨🎓 Student Portal
+- **Dashboard:** Overview with statistics
+- **Room Browsing:** View available rooms
+- **Application System:** Apply for rooms
+- **Status Tracking:** Monitor application progress
+- **Profile Management:** Update personal information
+
+### 👨💼 Admin Panel
+- **Room Management:** CRUD operations for rooms
+- **Application Review:** Approve/reject student applications
+- **User Management:** View all registered students
+- **System Overview:** Monitor all allotments
+
+## 📊 Database Schema
 
 ### User Table
-- id (PK)
-- name
-- email (unique)
-- password (hashed)
+```sql
+- id (Primary Key)
+- name (String)
+- email (Unique)
+- password (Hashed)
 - role (student/admin)
+- college (String)
+- year (Integer)
+```
 
 ### Room Table
-- id (PK)
-- roomNumber (unique)
-- capacity
+```sql
+- id (Primary Key)
+- roomNumber (Unique)
+- capacity (Integer)
 - status (Available/Occupied)
+- yearGroup (Integer)
+```
 
 ### Allotment Table
-- id (PK)
-- studentId (FK → User)
-- roomId (FK → Room)
-- dateOfAllotment
+```sql
+- id (Primary Key)
+- studentId (Foreign Key → User)
+- roomId (Foreign Key → Room)
+- dateOfAllotment (DateTime)
+```
 
-## 5. API Endpoints
+## 🌐 API Endpoints
 
 ### Authentication
-- `POST /auth/register` → Register new user
-- `POST /auth/login` → Login & get JWT
+- `POST /auth/signup` - Register new user
+- `POST /auth/login` - User login
 
-### Student
-- `GET /rooms` → List available rooms
-- `POST /rooms/apply/:roomId` → Apply for room
-- `GET /my-room` → View allotted room
+### Student APIs
+- `GET /rooms/all` - List available rooms
+- `POST /allotment/apply/:roomId` - Apply for room
+- `GET /allotment/my` - View my allotment
 
-### Admin
-- `POST /rooms` → Add room
-- `PUT /rooms/:id` → Update room details
-- `DELETE /rooms/:id` → Delete room
-- `GET /allotments` → View all allotments
-- `POST /allotments/approve/:studentId` → Approve allotment
+### Admin APIs
+- `POST /rooms/create` - Create new room
+- `PUT /rooms/update/:id` - Update room details
+- `DELETE /rooms/delete/:id` - Delete room
+- `GET /allotment/all` - View all allotments
+- `POST /allotment/approve/:studentId` - Approve allotment
 
-## 6. Folder Structure (Backend Only)
-```
-backend/
-│── prisma/
-│   ├── schema.prisma       # Database schema
-│   ├── migrations/         # Auto-generated by Prisma
-│
-│── src/
-│   ├── config/
-│   │   └── db.js           # Prisma client setup
-│   │
-│   ├── controllers/
-│   │   ├── authController.js
-│   │   ├── studentController.js
-│   │   └── adminController.js
-│   │
-│   ├── middleware/
-│   │   └── authMiddleware.js
-│   │
-│   ├── routes/
-│   │   ├── authRoutes.js
-│   │   ├── studentRoutes.js
-│   │   └── adminRoutes.js
-│   │
-│   ├── utils/
-│   │   └── token.js        # JWT helpers
-│   │
-│   ├── app.js              # Express setup
-│   └── server.js           # Server entry point
-│
-│── .env                    # DB_URL, JWT_SECRET
-│── package.json
-```
+## 🎨 UI/UX Design
 
-## 7. Work Division (All Backend)
-Each member gets a separate module → ensures commits are balanced.
+### Design Philosophy
+- **Minimalist:** Clean black and white theme
+- **Professional:** Corporate-style interface
+- **Responsive:** Mobile-first design approach
+- **Accessible:** High contrast and readable fonts
 
-### Atharv (Team Lead – Setup & Auth)
-- Initialize Node.js + Express project
-- Configure Prisma + MySQL
-- Create User model in schema
-- Implement Authentication (/auth/register, /auth/login)
+### Key Components
+- **Landing Page:** Project overview and authentication
+- **Dashboard:** Sidebar navigation with content areas
+- **Forms:** Clean input fields with validation
+- **Cards:** Information display in grid layouts
 
-### Ishita (Student Module)
-- Create Student routes + controllers
-- Implement APIs: /rooms, /rooms/apply/:id, /my-room
-- Handle Prisma queries for student allotments
+## 👥 Team Contributions
 
-### Swarnim (Admin Module – Room Management)
-- Create Room routes + controllers
-- Implement APIs: /rooms (POST, PUT, DELETE)
-- Prisma queries for managing room availability
+| Member | Module | Responsibility |
+|--------|--------|----------------|
+| **Ishita** | Authentication | User signup, login, JWT tokens |
+| **Swarnim** | Room Management | CRUD operations for rooms |
+| **Ansh** | Allotment System | Application processing |
+| **Core Team** | Integration | Frontend, API integration, deployment |
 
-### Ansh (Admin Module – Allotments)
-- Create Allotment routes + controllers
-- Implement APIs: /allotments, /allotments/approve/:studentId
-- Handle student-room mapping logic
+## 🚀 Getting Started
 
-## 8. GitHub Workflow
-- Create repo: `hostel-room-allotment`
-- Add all 4 members as collaborators
-- **Branching strategy:**
-  - `atharv-auth`
-  - `ishita-student`
-  - `swarnim-rooms`
-  - `ansh-allotments`
-- Each person works only on their branch → commits often
-- PRs to merge into main after code review
-- **Use commit messages like:**
-  - `feat(auth): add register API`
-  - `feat(student): room application API`
+1. **Clone Repository**
+   ```bash
+   git clone <repository-url>
+   cd AP-PROJECT-
+   ```
 
-## 9. Timeline (2–3 Weeks)
+2. **Setup Database**
+   - Create MySQL database
+   - Update connection string in `.env`
 
-### Week 1:
-- **Atharv:** project setup + Auth
-- **Ishita:** Student APIs base routes
-- **Swarnim:** Room schema + APIs
-- **Ansh:** Allotment schema setup
+3. **Start Backend**
+   ```bash
+   cd backend
+   npm install
+   npx prisma db push
+   npm start
+   ```
 
-### Week 2:
-- Complete all APIs
-- Middleware + error handling
-- Testing APIs with Postman
+4. **Start Frontend**
+   ```bash
+   cd frontend
+   npm install
+   npm start
+   ```
 
-### Week 3:
-- Integration & debugging
-- Documentation (README + API docs)
-- Final commits
+5. **Access Application**
+   - Frontend: http://localhost:5174
+   - Backend API: http://localhost:5002
 
-## 10. Deliverables
-- Backend REST API (Node.js + Express + Prisma + MySQL)
-- Prisma schema + migrations
-- Postman collection for API testing
-- Documentation (README.md)
-- GitHub repo with tracked commits for all members
+## 📝 Usage Guide
 
+### For Students
+1. Register with college email
+2. Login to access dashboard
+3. Browse available rooms
+4. Apply for preferred room
+5. Track application status
 
+### For Admins
+1. Login with admin credentials
+2. Manage room inventory
+3. Review student applications
+4. Approve/reject allotments
+5. Monitor system usage
 
+## 🔒 Security Features
 
+- **Password Hashing:** bcrypt encryption
+- **JWT Authentication:** Secure token-based auth
+- **CORS Protection:** Cross-origin request security
+- **Input Validation:** Server-side data validation
+- **Role-based Access:** Admin/student permissions
+
+## 📱 Responsive Design
+
+- **Desktop:** Full sidebar navigation
+- **Tablet:** Collapsible sidebar
+- **Mobile:** Bottom navigation tabs
+- **All devices:** Touch-friendly interfaces
+
+## 🧪 Testing
+
+### Manual Testing
+- API endpoints via Postman
+- Frontend functionality testing
+- Cross-browser compatibility
+- Mobile responsiveness
+
+### Test Scenarios
+- User registration and login
+- Room application workflow
+- Admin approval process
+- Error handling validation
+
+## 🚀 Deployment
+
+### Backend Deployment
+- Node.js hosting (Heroku, Railway, etc.)
+- MySQL database (PlanetScale, AWS RDS)
+- Environment variables configuration
+
+### Frontend Deployment
+- Static hosting (Netlify, Vercel)
+- Build optimization
+- API endpoint configuration
+
+## 📈 Future Enhancements
+
+- **Real-time Notifications:** WebSocket integration
+- **Payment Integration:** Fee collection system
+- **Advanced Filtering:** Room search capabilities
+- **Analytics Dashboard:** Usage statistics
+- **Mobile App:** React Native version
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create feature branch
+3. Commit changes
+4. Push to branch
+5. Create Pull Request
+
+## 📄 License
+
+This project is developed for educational purposes as part of academic coursework.
+
+## 📞 Support
+
+For issues and questions:
+- Create GitHub issue
+- Contact team members
+- Check documentation
+
+---
+
+**Built with ❤️ by Team Devs**
