@@ -15,7 +15,7 @@ try {
 
     const student = await prisma.user.findUnique({
     where: { id: studentId },
-    include: { allotment: true }
+    include: { allotments: true }
     });
 
     const studentCheck = ensureStudentHasNoAllotment(student);

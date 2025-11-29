@@ -13,6 +13,8 @@ model User {
   email    String @unique
   password String
   role     String
+  college  String?
+  year     Int?
   
   allotments Allotment[]
 }
@@ -22,6 +24,7 @@ model Room {
   roomNumber String @unique
   capacity   Int
   status     String
+  yearGroup  Int?
   
   allotments Allotment[]
 }

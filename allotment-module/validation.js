@@ -1,7 +1,7 @@
 // 📄 validation.js
 module.exports = {
     ensureStudentHasNoAllotment(student) {
-    if (student.allotment) {
+    if (student.allotments && student.allotments.length > 0) {
         return "Student already has a room allotted!";
     }
     return null;
