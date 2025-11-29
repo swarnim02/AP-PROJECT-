@@ -46,14 +46,48 @@ function Landing() {
       </main>
       
       <footer className="footer">
-        <p>AP-PROJECT Team | Node.js + React + MySQL</p>
+        <p>Devs Team | Node.js + React + MySQL</p>
       </footer>
     </div>
   );
 }
 
 function Login() {
-  return <div className="page"><h2>Login</h2><p>Authentication page under development</p></div>;
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // TODO: Add login logic
+    console.log('Login submitted');
+  };
+
+  return (
+    <div className="auth-page">
+      <div className="auth-container">
+        <div className="auth-header">
+          <h2>Login</h2>
+          <p>Access your account</p>
+        </div>
+        
+        <form className="auth-form" onSubmit={handleSubmit}>
+          <div className="form-group">
+            <label>Email Address</label>
+            <input type="email" required />
+          </div>
+          
+          <div className="form-group">
+            <label>Password</label>
+            <input type="password" required />
+          </div>
+          
+          <button type="submit" className="submit-btn">Login</button>
+        </form>
+        
+        <div className="auth-footer">
+          <p>Don't have an account? <Link to="/signup">Register here</Link></p>
+          <Link to="/" className="back-link">Back to Home</Link>
+        </div>
+      </div>
+    </div>
+  );
 }
 
 function Signup() {
