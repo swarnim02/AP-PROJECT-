@@ -309,21 +309,24 @@ body {
   background: #ccc;
 }
 
-.dashboard {
+.dashboard-layout {
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 .dashboard-header {
   background: #000;
   color: #fff;
-  padding: 20px;
+  padding: 16px 24px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  border-bottom: 1px solid #333;
 }
 
 .dashboard-header h1 {
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 500;
 }
 
@@ -341,56 +344,283 @@ body {
   background: #f5f5f5;
 }
 
+.dashboard-body {
+  display: flex;
+  flex: 1;
+}
+
+.sidebar {
+  width: 250px;
+  background: #000;
+  color: #fff;
+  border-right: 1px solid #333;
+}
+
+.sidebar-header {
+  padding: 20px;
+  border-bottom: 1px solid #333;
+}
+
+.sidebar-header h3 {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.sidebar-nav {
+  padding: 0;
+}
+
+.sidebar-item {
+  display: block;
+  width: 100%;
+  padding: 16px 20px;
+  background: none;
+  border: none;
+  color: #fff;
+  text-align: left;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.sidebar-item:hover {
+  background: #333;
+}
+
+.sidebar-item.active {
+  background: #333;
+  border-right: 3px solid #fff;
+}
+
 .dashboard-main {
-  padding: 40px 20px;
+  flex: 1;
+  padding: 24px;
+  background: #fff;
 }
 
-.dashboard-content {
-  max-width: 800px;
-  margin: 0 auto;
-  text-align: center;
+.content-page {
+  max-width: 1000px;
 }
 
-.dashboard-content h2 {
-  font-size: 28px;
-  margin-bottom: 12px;
+.content-header {
+  margin-bottom: 32px;
+}
+
+.content-header h2 {
+  font-size: 24px;
+  font-weight: 500;
+  margin-bottom: 8px;
   color: #000;
 }
 
-.dashboard-content p {
+.content-header p {
   color: #666;
-  margin-bottom: 40px;
+  font-size: 14px;
 }
 
-.dashboard-actions {
-  display: flex;
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 20px;
-  justify-content: center;
+  margin-bottom: 32px;
 }
 
-.dashboard-btn {
-  padding: 16px 32px;
-  background: #000;
-  color: #fff;
-  text-decoration: none;
+.stat-card {
+  background: #fafafa;
+  border: 1px solid #ddd;
+  padding: 24px;
+  text-align: center;
+}
+
+.stat-card h3 {
+  font-size: 14px;
   font-weight: 500;
+  color: #666;
+  margin-bottom: 12px;
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
 
-.dashboard-btn:hover {
+.stat-number {
+  font-size: 32px;
+  font-weight: 600;
+  color: #000;
+}
+
+.stat-status {
+  font-size: 16px;
+  font-weight: 500;
+  color: #666;
+  padding: 4px 12px;
+  background: #f0f0f0;
+  border: 1px solid #ddd;
+}
+
+.recent-activity {
+  margin-bottom: 32px;
+}
+
+.recent-activity h3 {
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 16px;
+  color: #000;
+}
+
+.activity-list {
+  border: 1px solid #ddd;
+}
+
+.activity-item {
+  padding: 12px 16px;
+  border-bottom: 1px solid #ddd;
+  font-size: 14px;
+  color: #666;
+}
+
+.activity-item:last-child {
+  border-bottom: none;
+}
+
+.room-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.room-card {
+  background: #fafafa;
+  border: 1px solid #ddd;
+  padding: 24px;
+}
+
+.room-card h4 {
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 12px;
+  color: #000;
+}
+
+.room-card p {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 8px;
+}
+
+.apply-btn {
+  background: #000;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  margin-top: 16px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.apply-btn:hover {
+  background: #333;
+}
+
+.status-card {
+  background: #fafafa;
+  border: 1px solid #ddd;
+  padding: 24px;
+  max-width: 500px;
+}
+
+.status-card h4 {
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 16px;
+  color: #000;
+}
+
+.status-card p {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 8px;
+}
+
+.status-pending {
+  color: #666;
+  background: #f0f0f0;
+  padding: 2px 8px;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.cancel-btn {
+  background: #fff;
+  color: #000;
+  border: 1px solid #000;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  margin-top: 16px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.cancel-btn:hover {
+  background: #f5f5f5;
+}
+
+.profile-form {
+  max-width: 500px;
+}
+
+.update-btn {
+  background: #000;
+  color: #fff;
+  border: none;
+  padding: 12px 24px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  margin-top: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.update-btn:hover {
   background: #333;
 }
 
 @media (max-width: 768px) {
-  .dashboard-actions {
+  .dashboard-body {
     flex-direction: column;
-    align-items: center;
   }
   
-  .dashboard-header {
-    flex-direction: column;
-    gap: 16px;
+  .sidebar {
+    width: 100%;
+    order: 2;
+  }
+  
+  .dashboard-main {
+    order: 1;
+  }
+  
+  .sidebar-nav {
+    display: flex;
+    overflow-x: auto;
+  }
+  
+  .sidebar-item {
+    white-space: nowrap;
+    min-width: 120px;
+  }
+  
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .room-grid {
+    grid-template-columns: 1fr;
   }
 }
 
