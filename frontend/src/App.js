@@ -3,6 +3,9 @@ import { useState } from 'react';
 import './App.css';
 import api from './services/api';
 import Dashboard from './components/Dashboard';
+import AdminDashboard from './components/AdminDashboard';
+import ProtectedRoute from './components/ProtectedRoute';
+import RoleBasedRoute from './components/RoleBasedRoute';
 
 function Landing() {
   return (
@@ -71,7 +74,17 @@ function Login() {
       const result = await api.login(email, password);
       if (result.token) {
         localStorage.setItem('token', result.token);
-        navigate('/dashboard');
+        
+        // Decode token to get user role
+        const payload = JSON.parse(atob(result.token.split('.')[1]));
+        const userRole = payload.role;
+        
+        // Redirect based on role
+        if (userRole === 'admin') {
+          navigate('/admin');
+        } else {
+          navigate('/dashboard');
+        }
       } else {
         // Handle specific error messages from backend
         if (result.message === 'User not found') {
@@ -308,7 +321,20 @@ function App() {
         <Route path="/" element={<Landing />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/dashboard" element={
+          <ProtectedRoute>
+            <RoleBasedRoute requiredRole="student">
+              <Dashboard />
+            </RoleBasedRoute>
+          </ProtectedRoute>
+        } />
+        <Route path="/admin" element={
+          <ProtectedRoute>
+            <RoleBasedRoute requiredRole="admin">
+              <AdminDashboard />
+            </RoleBasedRoute>
+          </ProtectedRoute>
+        } />
       </Routes>
     </Router>
   );
