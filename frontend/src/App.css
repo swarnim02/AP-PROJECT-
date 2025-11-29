@@ -658,6 +658,71 @@ body {
   font-size: 12px;
 }
 
+/* Application Review Styles */
+.applications-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.application-card {
+  background: #fafafa;
+  border: 1px solid #ddd;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.app-info h4 {
+  margin-bottom: 8px;
+  color: #000;
+}
+
+.app-info p {
+  margin-bottom: 4px;
+  font-size: 14px;
+  color: #666;
+}
+
+.app-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.approve-btn {
+  background: #000;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.approve-btn:hover {
+  background: #333;
+}
+
+.reject-btn {
+  background: #fff;
+  color: #000;
+  border: 1px solid #000;
+  padding: 8px 16px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.reject-btn:hover {
+  background: #f5f5f5;
+}
+
+.no-data {
+  text-align: center;
+  padding: 40px;
+  color: #666;
+  font-style: italic;
+}
+
 @media (max-width: 768px) {
   .dashboard-body {
     flex-direction: column;
