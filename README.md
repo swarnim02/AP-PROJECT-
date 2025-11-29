@@ -1,158 +1,83 @@
 # AP-PROJECT-
-📑 Project Report & Plan
-Project Title: Hostel Room Allotment System
 
-1. Objective
+📑 **Project Report & Plan**  
+**Project Title:** Hostel Room Allotment System
+
+## 1. Objective
 To build a Hostel Room Allotment System backend that manages student registrations, authentication, hostel room availability, allotments, and admin controls.
+
 The evaluation will focus on:
-Code quality in backend
-
-
-Database schema design
-
-
-API endpoints
-
-
-GitHub commits by each member
-
-
-
-2. Tech Stack
-Backend Framework: Node.js + Express.js
-
-
-Database ORM: Prisma
-
-
-Database: MySQL
-
-
-
-3. Core Features
-Authentication (JWT-based)
-
-
-Student signup/login
-
-
-Admin login
-
-
-Student APIs
-
-
-View available rooms
-
-
-Apply for a room
-
-
-View allotted room
-
-
-Admin APIs
-
-
-Manage rooms (CRUD)
-
-
-Approve/reject allotments
-
-
-View all allotments
-
-
-Room Management
-
-
-Track availability
-
-
-Ensure no duplicate allotments
-
-
-
-4. Database Schema (Prisma + MySQL)
-User Table
-id (PK)
-
-
-name
-
-
-email (unique)
-
-
-password (hashed)
-
-
-role (student/admin)
-
-
-Room Table
-id (PK)
-
-
-roomNumber (unique)
-
-
-capacity
-
-
-status (Available/Occupied)
-
-
-Allotment Table
-id (PK)
-
-
-studentId (FK → User)
-
-
-roomId (FK → Room)
-
-
-dateOfAllotment
-
-
-
-5. API Endpoints
-Authentication
-POST /auth/register → Register new user
-
-
-POST /auth/login → Login & get JWT
-
-
-Student
-GET /rooms → List available rooms
-
-
-POST /rooms/apply/:roomId → Apply for room
-
-
-GET /my-room → View allotted room
-
-
-Admin
-POST /rooms → Add room
-
-
-PUT /rooms/:id → Update room details
-
-
-DELETE /rooms/:id → Delete room
-
-
-GET /allotments → View all allotments
-
-
-POST /allotments/approve/:studentId → Approve allotment
-
-
-
-6. Folder Structure (Backend Only)
+- Code quality in backend
+- Database schema design
+- API endpoints
+- GitHub commits by each member
+
+## 2. Tech Stack
+- **Backend Framework:** Node.js + Express.js
+- **Database ORM:** Prisma
+- **Database:** MySQL
+
+## 3. Core Features
+
+### Authentication (JWT-based)
+- Student signup/login
+- Admin login
+
+### Student APIs
+- View available rooms
+- Apply for a room
+- View allotted room
+
+### Admin APIs
+- Manage rooms (CRUD)
+- Approve/reject allotments
+- View all allotments
+
+### Room Management
+- Track availability
+- Ensure no duplicate allotments
+
+## 4. Database Schema (Prisma + MySQL)
+
+### User Table
+- id (PK)
+- name
+- email (unique)
+- password (hashed)
+- role (student/admin)
+
+### Room Table
+- id (PK)
+- roomNumber (unique)
+- capacity
+- status (Available/Occupied)
+
+### Allotment Table
+- id (PK)
+- studentId (FK → User)
+- roomId (FK → Room)
+- dateOfAllotment
+
+## 5. API Endpoints
+
+### Authentication
+- `POST /auth/register` → Register new user
+- `POST /auth/login` → Login & get JWT
+
+### Student
+- `GET /rooms` → List available rooms
+- `POST /rooms/apply/:roomId` → Apply for room
+- `GET /my-room` → View allotted room
+
+### Admin
+- `POST /rooms` → Add room
+- `PUT /rooms/:id` → Update room details
+- `DELETE /rooms/:id` → Delete room
+- `GET /allotments` → View all allotments
+- `POST /allotments/approve/:studentId` → Approve allotment
+
+## 6. Folder Structure (Backend Only)
+```
 backend/
 │── prisma/
 │   ├── schema.prisma       # Database schema
@@ -183,147 +108,70 @@ backend/
 │
 │── .env                    # DB_URL, JWT_SECRET
 │── package.json
+```
 
-
-7. Work Division (All Backend)
+## 7. Work Division (All Backend)
 Each member gets a separate module → ensures commits are balanced.
-Atharv (Team Lead – Setup & Auth)
-Initialize Node.js + Express project
 
-
-Configure Prisma + MySQL
-
-
-Create User model in schema
-
-
-Implement Authentication (/auth/register, /auth/login)
-
-
-Ishita (Student Module)
-Create Student routes + controllers
-
-
-Implement APIs: /rooms, /rooms/apply/:id, /my-room
-
-
-Handle Prisma queries for student allotments
-
-
-Swarnim (Admin Module – Room Management)
-Create Room routes + controllers
-
-
-Implement APIs: /rooms (POST, PUT, DELETE)
-
-
-Prisma queries for managing room availability
-
-
-Ansh (Admin Module – Allotments)
-Create Allotment routes + controllers
-
-
-Implement APIs: /allotments, /allotments/approve/:studentId
-
-
-Handle student-room mapping logic
-
-
-
-8. GitHub Workflow
-Create repo: hostel-room-allotment
-
-
-Add all 4 members as collaborators
-
-
-Branching strategy:
-
-
-atharv-auth
-
-
-ishita-student
-
-
-swarnim-rooms
-
-
-ansh-allotments
-
-
-Each person works only on their branch → commits often
-
-
-PRs to merge into main after code review
-
-
-Use commit messages like:
-
-
-feat(auth): add register API
-
-
-feat(student): room application API
-
-
-
-9. Timeline (2–3 Weeks)
-Week 1:
-
-
-Atharv: project setup + Auth
-
-
-Ishita: Student APIs base routes
-
-
-Swarnim: Room schema + APIs
-
-
-Ansh: Allotment schema setup
-
-
-Week 2:
-
-
-Complete all APIs
-
-
-Middleware + error handling
-
-
-Testing APIs with Postman
-
-
-Week 3:
-
-
-Integration & debugging
-
-
-Documentation (README + API docs)
-
-
-Final commits
-
-
-
-10. Deliverables
-Backend REST API (Node.js + Express + Prisma + MySQL)
-
-
-Prisma schema + migrations
-
-
-Postman collection for API testing
-
-
-Documentation (README.md)
-
-
-GitHub repo with tracked commits for all members
+### Atharv (Team Lead – Setup & Auth)
+- Initialize Node.js + Express project
+- Configure Prisma + MySQL
+- Create User model in schema
+- Implement Authentication (/auth/register, /auth/login)
+
+### Ishita (Student Module)
+- Create Student routes + controllers
+- Implement APIs: /rooms, /rooms/apply/:id, /my-room
+- Handle Prisma queries for student allotments
+
+### Swarnim (Admin Module – Room Management)
+- Create Room routes + controllers
+- Implement APIs: /rooms (POST, PUT, DELETE)
+- Prisma queries for managing room availability
+
+### Ansh (Admin Module – Allotments)
+- Create Allotment routes + controllers
+- Implement APIs: /allotments, /allotments/approve/:studentId
+- Handle student-room mapping logic
+
+## 8. GitHub Workflow
+- Create repo: `hostel-room-allotment`
+- Add all 4 members as collaborators
+- **Branching strategy:**
+  - `atharv-auth`
+  - `ishita-student`
+  - `swarnim-rooms`
+  - `ansh-allotments`
+- Each person works only on their branch → commits often
+- PRs to merge into main after code review
+- **Use commit messages like:**
+  - `feat(auth): add register API`
+  - `feat(student): room application API`
+
+## 9. Timeline (2–3 Weeks)
+
+### Week 1:
+- **Atharv:** project setup + Auth
+- **Ishita:** Student APIs base routes
+- **Swarnim:** Room schema + APIs
+- **Ansh:** Allotment schema setup
+
+### Week 2:
+- Complete all APIs
+- Middleware + error handling
+- Testing APIs with Postman
+
+### Week 3:
+- Integration & debugging
+- Documentation (README + API docs)
+- Final commits
+
+## 10. Deliverables
+- Backend REST API (Node.js + Express + Prisma + MySQL)
+- Prisma schema + migrations
+- Postman collection for API testing
+- Documentation (README.md)
+- GitHub repo with tracked commits for all members
 
 
 
