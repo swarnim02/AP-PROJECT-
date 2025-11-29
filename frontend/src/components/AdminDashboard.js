@@ -1,5 +1,8 @@
 import { useState } from 'react';
 import AdminSidebar from './AdminSidebar';
+import RoomManagement from './RoomManagement';
+import ApplicationReview from './ApplicationReview';
+import UserManagement from './UserManagement';
 
 function AdminOverview() {
   return (
@@ -50,9 +53,9 @@ function AdminDashboard() {
 
   const renderContent = () => {
     switch(activeTab) {
-      case 'rooms': return <div>Room Management Component</div>;
-      case 'applications': return <div>Application Review Component</div>;
-      case 'users': return <div>User Management Component</div>;
+      case 'rooms': return <RoomManagement />;
+      case 'applications': return <ApplicationReview />;
+      case 'users': return <UserManagement />;
       default: return <AdminOverview />;
     }
   };
