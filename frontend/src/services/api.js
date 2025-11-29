@@ -9,6 +9,11 @@ const api = {
       },
       body: JSON.stringify({ email, password }),
     });
+    
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    
     return response.json();
   },
 
@@ -20,6 +25,11 @@ const api = {
       },
       body: JSON.stringify(userData),
     });
+    
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    
     return response.json();
   },
 
