@@ -1,11 +1,11 @@
 const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 
-const autoAllocate = require("./autoAllocate");
+const autoAllocate = require("../utils/autoAllocate");
 const {
 ensureStudentHasNoAllotment,
 ensureRoomAvailable
-} = require("./validation");
+} = require("../validation/validation");
 
 // APPLY FOR ROOM (student)
 exports.applyForRoom = async (req, res) => {

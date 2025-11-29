@@ -2,14 +2,14 @@
 const express = require("express");
 const router = express.Router();
 
-const auth = require("../middleware"); // middleware.js in root
+const auth = require("../../../middleware/auth");
 
 const {
     applyForRoom,
     myAllotment,
     adminApprove,
     getAllAllotments,
-} = require("./allotmentController");
+} = require("../controllers/allotmentController");
 
 // STUDENT — apply for room
 router.post("/apply/:roomId", auth, applyForRoom);

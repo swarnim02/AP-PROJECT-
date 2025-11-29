@@ -2,8 +2,8 @@ const bcrypt = require("bcrypt");
 const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 
-const { validateSignup, validateLogin } = require("./authValidation");
-const { generateToken } = require("./tokenUtils");
+const { validateSignup, validateLogin } = require("../validation/authValidation");
+const { generateToken } = require("../utils/tokenUtils");
 
 // SIGNUP
 exports.signup = async (req, res) => {

@@ -1,13 +1,13 @@
 const express = require("express");
 const router = express.Router();
-const auth = require("../middleware");
+const auth = require("../../../middleware/auth");
 const {
 createRoom,
 updateRoom,
 deleteRoom,
 getAllRooms,
 getRoomById
-} = require("./roomController");
+} = require("../controllers/roomController");
 
 router.post("/create", auth, createRoom);
 router.put("/update/:id", auth, updateRoom);

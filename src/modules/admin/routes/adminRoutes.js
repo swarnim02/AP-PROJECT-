@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
-const auth = require("../middleware");
-const { allUsers, allRooms, allAllotments } = require("./adminController");
+const auth = require("../../../middleware/auth");
+const { allUsers, allRooms, allAllotments } = require("../controllers/adminController");
 
 // ADMIN ONLY ROUTES
 router.get("/users", auth, allUsers);

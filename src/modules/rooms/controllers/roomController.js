@@ -4,7 +4,7 @@ const prisma = new PrismaClient();
 const {
   validateRoomInput,
   ensureCapacityNotLowerThanCurrent
-} = require("./roomValidation");
+} = require("../validation/roomValidation");
 
 // CREATE ROOM (ADMIN)
 exports.createRoom = async (req, res) => {
