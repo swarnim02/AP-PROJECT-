@@ -914,4 +914,20 @@ body {
   .content {
     padding: 0 10px;
   }
+  
+  .notification-container {
+    right: 10px;
+    left: 10px;
+    top: 10px;
+  }
+  
+  .notification {
+    min-width: auto;
+    font-size: 14px;
+  }
+  
+  .error-boundary {
+    margin: 10px;
+    padding: 20px;
+  }
 }
