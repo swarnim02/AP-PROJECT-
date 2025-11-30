@@ -6,6 +6,8 @@ import Dashboard from './components/Dashboard';
 import AdminDashboard from './components/AdminDashboard';
 import ProtectedRoute from './components/ProtectedRoute';
 import RoleBasedRoute from './components/RoleBasedRoute';
+import Notification from './components/Notification';
+import ErrorBoundary from './components/ErrorBoundary';
 
 function Landing() {
   return (
@@ -316,27 +318,30 @@ function Signup() {
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Landing />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/dashboard" element={
-          <ProtectedRoute>
-            <RoleBasedRoute requiredRole="student">
-              <Dashboard />
-            </RoleBasedRoute>
-          </ProtectedRoute>
-        } />
-        <Route path="/admin" element={
-          <ProtectedRoute>
-            <RoleBasedRoute requiredRole="admin">
-              <AdminDashboard />
-            </RoleBasedRoute>
-          </ProtectedRoute>
-        } />
-      </Routes>
-    </Router>
+    <ErrorBoundary>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Landing />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/dashboard" element={
+            <ProtectedRoute>
+              <RoleBasedRoute requiredRole="student">
+                <Dashboard />
+              </RoleBasedRoute>
+            </ProtectedRoute>
+          } />
+          <Route path="/admin" element={
+            <ProtectedRoute>
+              <RoleBasedRoute requiredRole="admin">
+                <AdminDashboard />
+              </RoleBasedRoute>
+            </ProtectedRoute>
+          } />
+        </Routes>
+        <Notification />
+      </Router>
+    </ErrorBoundary>
   );
 }
 
