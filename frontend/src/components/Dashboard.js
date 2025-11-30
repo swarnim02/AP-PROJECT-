@@ -120,6 +120,30 @@ function ApplicationStatus() {
 }
 
 function Profile() {
+  const [formData, setFormData] = useState({
+    name: 'Student Name',
+    email: 'student@example.com',
+    college: 'ABC College'
+  });
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+  };
+
+  const handleUpdate = async (e) => {
+    e.preventDefault();
+    try {
+      // Simulate API call
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      showNotification('Profile updated successfully!', 'success');
+    } catch (error) {
+      showNotification('Error updating profile. Please try again.', 'error');
+    }
+  };
+
   return (
     <div className="content-page">
       <div className="content-header">
@@ -127,21 +151,36 @@ function Profile() {
         <p>Manage your account information</p>
       </div>
       
-      <div className="profile-form">
+      <form className="profile-form" onSubmit={handleUpdate}>
         <div className="form-group">
           <label>Full Name</label>
-          <input type="text" defaultValue="Student Name" />
+          <input 
+            type="text" 
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+          />
         </div>
         <div className="form-group">
           <label>Email</label>
-          <input type="email" defaultValue="student@example.com" />
+          <input 
+            type="email" 
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+          />
         </div>
         <div className="form-group">
           <label>College</label>
-          <input type="text" defaultValue="ABC College" />
+          <input 
+            type="text" 
+            name="college"
+            value={formData.college}
+            onChange={handleChange}
+          />
         </div>
-        <button className="update-btn">Update Profile</button>
-      </div>
+        <button type="submit" className="update-btn">Update Profile</button>
+      </form>
     </div>
   );
 }
