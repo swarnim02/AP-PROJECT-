@@ -1,5 +1,6 @@
 import { Link, Routes, Route } from 'react-router-dom';
 import { useState } from 'react';
+import { showNotification } from './Notification';
 
 function Sidebar({ activeTab, setActiveTab }) {
   const menuItems = [
@@ -64,6 +65,16 @@ function Overview() {
 }
 
 function RoomList() {
+  const handleApply = async (roomId) => {
+    try {
+      // Simulate API call
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      showNotification('Application submitted successfully!', 'success');
+    } catch (error) {
+      showNotification('Error applying for room. Please try again.', 'error');
+    }
+  };
+
   return (
     <div className="content-page">
       <div className="content-header">
@@ -76,13 +87,13 @@ function RoomList() {
           <h4>Room R101</h4>
           <p>Capacity: 2 students</p>
           <p>Year Group: 2nd Year</p>
-          <button className="apply-btn">Apply Now</button>
+          <button className="apply-btn" onClick={() => handleApply('R101')}>Apply Now</button>
         </div>
         <div className="room-card">
           <h4>Room R102</h4>
           <p>Capacity: 3 students</p>
           <p>Year Group: 2nd Year</p>
-          <button className="apply-btn">Apply Now</button>
+          <button className="apply-btn" onClick={() => handleApply('R102')}>Apply Now</button>
         </div>
       </div>
     </div>
