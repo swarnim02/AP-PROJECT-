@@ -101,6 +101,16 @@ function RoomList() {
 }
 
 function ApplicationStatus() {
+  const handleCancel = async () => {
+    try {
+      // Simulate API call
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      showNotification('Application cancelled successfully!', 'info');
+    } catch (error) {
+      showNotification('Error cancelling application. Please try again.', 'error');
+    }
+  };
+
   return (
     <div className="content-page">
       <div className="content-header">
@@ -113,7 +123,7 @@ function ApplicationStatus() {
         <p><strong>Room:</strong> R101</p>
         <p><strong>Status:</strong> <span className="status-pending">Pending</span></p>
         <p><strong>Applied:</strong> 2024-01-15</p>
-        <button className="cancel-btn">Cancel Application</button>
+        <button className="cancel-btn" onClick={handleCancel}>Cancel Application</button>
       </div>
     </div>
   );
