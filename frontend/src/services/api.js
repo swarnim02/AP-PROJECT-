@@ -35,36 +35,66 @@ const api = {
   },
 
   async getRooms() {
-    const token = localStorage.getItem('token');
-    const response = await fetch(`${API_BASE_URL}/rooms/all`, {
-      headers: {
-        'Authorization': `Bearer ${token}`,
-      },
-    });
-    return response.json();
+    try {
+      const token = localStorage.getItem('token');
+      const response = await fetch(`${API_BASE_URL}/rooms/all`, {
+        headers: {
+          'Authorization': `Bearer ${token}`,
+        },
+      });
+      
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      
+      return response.json();
+    } catch (error) {
+      console.error('Error fetching rooms:', error);
+      throw error;
+    }
   },
 
   async applyForRoom(roomId) {
-    const token = localStorage.getItem('token');
-    const response = await fetch(`${API_BASE_URL}/allotment/apply/${roomId}`, {
-      method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${token}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({}),
-    });
-    return response.json();
+    try {
+      const token = localStorage.getItem('token');
+      const response = await fetch(`${API_BASE_URL}/allotment/apply/${roomId}`, {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({}),
+      });
+      
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      
+      return response.json();
+    } catch (error) {
+      console.error('Error applying for room:', error);
+      throw error;
+    }
   },
 
   async getMyAllotment() {
-    const token = localStorage.getItem('token');
-    const response = await fetch(`${API_BASE_URL}/allotment/my`, {
-      headers: {
-        'Authorization': `Bearer ${token}`,
-      },
-    });
-    return response.json();
+    try {
+      const token = localStorage.getItem('token');
+      const response = await fetch(`${API_BASE_URL}/allotment/my`, {
+        headers: {
+          'Authorization': `Bearer ${token}`,
+        },
+      });
+      
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      
+      return response.json();
+    } catch (error) {
+      console.error('Error fetching allotment:', error);
+      throw error;
+    }
   },
 
   // Admin APIs
