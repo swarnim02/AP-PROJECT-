@@ -1,6 +1,7 @@
 import { Link, Routes, Route } from 'react-router-dom';
 import { useState } from 'react';
 import { showNotification } from './Notification';
+import ProfileEditor from './ProfileEditor';
 
 function Sidebar({ activeTab, setActiveTab }) {
   const menuItems = [
@@ -207,7 +208,7 @@ function Dashboard() {
     switch(activeTab) {
       case 'rooms': return <RoomList />;
       case 'status': return <ApplicationStatus />;
-      case 'profile': return <Profile />;
+      case 'profile': return <ProfileEditor />;
       default: return <Overview />;
     }
   };
