@@ -49,7 +49,8 @@ AP-PROJECT-/
 - **Styling:** Pure CSS (Black & White Theme)
 - **HTTP Client:** Fetch API
 - **Port:** 5174
-
+## ER Diagram
+![ER-Diagram](https://ibb.co/FLbVLcnR "ER-Diagram")
 ## 🔧 Installation & Setup
 
 ### Prerequisites
