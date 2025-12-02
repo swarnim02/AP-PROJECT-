@@ -61,7 +61,6 @@ function Landing() {
             <h2>SYSTEM FEATURES</h2>
             <div className="features-grid">
               <div className="feature-card">
-                <div className="feature-icon">👨🎓</div>
                 <h3>Student Portal</h3>
                 <ul>
                   <li>Browse available rooms</li>
@@ -73,7 +72,6 @@ function Landing() {
               </div>
               
               <div className="feature-card">
-                <div className="feature-icon">👨💼</div>
                 <h3>Admin Panel</h3>
                 <ul>
                   <li>Room inventory management</li>
@@ -85,7 +83,6 @@ function Landing() {
               </div>
               
               <div className="feature-card">
-                <div className="feature-icon">🏠</div>
                 <h3>Room Management</h3>
                 <ul>
                   <li>Multiple hostel support</li>
@@ -165,7 +162,7 @@ function Landing() {
         </div>
         
         <div className="footer-bottom">
-          <p>&copy; 2024 Hostel Room Allotment System. Built with ❤️ by Team Devs</p>
+          <p>&copy; 2024 Hostel Room Allotment System. Built by Team Devs</p>
         </div>
       </footer>
     </div>

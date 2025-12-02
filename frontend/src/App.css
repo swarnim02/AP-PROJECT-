@@ -344,10 +344,7 @@ body {
   box-shadow: 16px 16px 0px #000;
 }
 
-.feature-icon {
-  font-size: 48px;
-  margin-bottom: 20px;
-}
+
 
 .feature-card h3 {
   font-size: 24px;
@@ -519,10 +516,16 @@ body {
 
 .auth-container {
   background: #fff;
-  border: 1px solid #ddd;
+  border: 3px solid #000;
   padding: 40px;
   max-width: 400px;
   width: 100%;
+  transition: all 0.3s ease;
+}
+
+.auth-container:hover {
+  transform: translateY(-4px);
+  box-shadow: 12px 12px 0px #000;
 }
 
 .auth-header {
@@ -807,10 +810,17 @@ body {
 }
 
 .stat-card {
-  background: #fafafa;
-  border: 1px solid #ddd;
-  padding: 24px;
+  background: #fff;
+  border: 3px solid #000;
+  padding: 30px;
   text-align: center;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.stat-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 12px 12px 0px #000;
 }
 
 .stat-card h3 {
@@ -950,10 +960,16 @@ body {
 }
 
 .status-card {
-  background: #fafafa;
-  border: 1px solid #ddd;
-  padding: 24px;
+  background: #fff;
+  border: 3px solid #000;
+  padding: 30px;
   max-width: 500px;
+  transition: all 0.3s ease;
+}
+
+.status-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 8px 8px 0px #000;
 }
 
 .status-card h4 {
