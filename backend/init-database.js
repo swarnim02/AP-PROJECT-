@@ -2,7 +2,14 @@ require('dotenv').config();
 const { PrismaClient } = require('@prisma/client');
 const bcrypt = require('bcrypt');
 
-const prisma = new PrismaClient();
+// Create a fresh Prisma client instance for initialization
+const prisma = new PrismaClient({
+  datasources: {
+    db: {
+      url: process.env.DATABASE_URL,
+    },
+  },
+});
 
 async function initDatabase() {
   try {
@@ -12,85 +19,9 @@ async function initDatabase() {
     await prisma.$connect();
     console.log('✅ Database connected');
 
-    // Check if tables exist by trying a simple query
-    try {
-      await prisma.user.count();
-      console.log('✅ Tables already exist');
-    } catch (error) {
-      console.log('❌ Tables do not exist, creating them...');
-      
-      // Execute raw SQL to create tables
-      await prisma.$executeRaw`
-        CREATE TABLE IF NOT EXISTS "User" (
-          "id" SERIAL NOT NULL,
-          "name" TEXT NOT NULL,
-          "email" TEXT NOT NULL,
-          "password" TEXT NOT NULL,
-          "college" TEXT NOT NULL,
-          "year" INTEGER NOT NULL,
-          "gender" TEXT NOT NULL,
-          "role" TEXT NOT NULL DEFAULT 'student',
-          "profileApproved" BOOLEAN,
-          "phone" TEXT,
-          "address" TEXT,
-          "guardianName" TEXT,
-          "guardianPhone" TEXT,
-          "switchCount" INTEGER NOT NULL DEFAULT 0,
-          "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-          "updatedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-          CONSTRAINT "User_pkey" PRIMARY KEY ("id")
-        );
-      `;
-
-      await prisma.$executeRaw`
-        CREATE UNIQUE INDEX IF NOT EXISTS "User_email_key" ON "User"("email");
-      `;
-
-      await prisma.$executeRaw`
-        CREATE TABLE IF NOT EXISTS "Room" (
-          "id" SERIAL NOT NULL,
-          "roomNumber" TEXT NOT NULL,
-          "capacity" INTEGER NOT NULL,
-          "status" TEXT NOT NULL DEFAULT 'Available',
-          "yearGroup" INTEGER NOT NULL,
-          "gender" TEXT NOT NULL,
-          "hostelName" TEXT NOT NULL,
-          "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-          "updatedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-          CONSTRAINT "Room_pkey" PRIMARY KEY ("id")
-        );
-      `;
-
-      await prisma.$executeRaw`
-        CREATE UNIQUE INDEX IF NOT EXISTS "Room_roomNumber_key" ON "Room"("roomNumber");
-      `;
-
-      await prisma.$executeRaw`
-        CREATE TABLE IF NOT EXISTS "Allotment" (
-          "id" SERIAL NOT NULL,
-          "studentId" INTEGER NOT NULL,
-          "roomId" INTEGER NOT NULL,
-          "dateOfAllotment" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-          "status" TEXT NOT NULL DEFAULT 'pending',
-          "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-          "updatedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-          CONSTRAINT "Allotment_pkey" PRIMARY KEY ("id")
-        );
-      `;
-
-      await prisma.$executeRaw`
-        ALTER TABLE "Allotment" ADD CONSTRAINT IF NOT EXISTS "Allotment_studentId_fkey" 
-        FOREIGN KEY ("studentId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
-      `;
-
-      await prisma.$executeRaw`
-        ALTER TABLE "Allotment" ADD CONSTRAINT IF NOT EXISTS "Allotment_roomId_fkey" 
-        FOREIGN KEY ("roomId") REFERENCES "Room"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
-      `;
-
-      console.log('✅ Tables created successfully');
-    }
-
+    // Use Prisma's db push to sync schema instead of raw SQL
+    console.log('🔄 Syncing database schema...');
+    
     // Create admin user
     const adminExists = await prisma.user.findUnique({
       where: { email: 'admin@hostel.com' }
