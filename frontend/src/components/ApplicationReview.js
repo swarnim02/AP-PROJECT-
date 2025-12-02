@@ -12,7 +12,7 @@ function ApplicationReview() {
   const fetchApplications = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:5002/admin/allotments', {
+      const response = await fetch('https://ap-project-v67b.onrender.com/admin/allotments', {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const data = await response.json();
@@ -26,7 +26,7 @@ function ApplicationReview() {
   const handleApprove = async (allotmentId) => {
     try {
       const token = localStorage.getItem('token');
-      await fetch(`http://localhost:5002/allotment/approve/${allotmentId}`, {
+      await fetch(`https://ap-project-v67b.onrender.com/allotment/approve/${allotmentId}`, {
         method: 'POST',
         headers: { 'Authorization': `Bearer ${token}` }
       });
@@ -41,7 +41,7 @@ function ApplicationReview() {
     
     try {
       const token = localStorage.getItem('token');
-      await fetch(`http://localhost:5002/allotment/reject/${applicationId}`, {
+      await fetch(`https://ap-project-v67b.onrender.com/allotment/reject/${applicationId}`, {
         method: 'POST',
         headers: { 'Authorization': `Bearer ${token}` }
       });

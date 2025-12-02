@@ -12,7 +12,7 @@ function ProfileApproval() {
   const fetchPendingProfiles = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:5002/auth/pending-profiles', {
+      const response = await fetch('https://ap-project-v67b.onrender.com/auth/pending-profiles', {
         headers: { 
           'Authorization': `Bearer ${token}`
         }
@@ -29,7 +29,7 @@ function ProfileApproval() {
     try {
       console.log('Approving user ID:', userId);
       const token = localStorage.getItem('token');
-      const response = await fetch(`http://localhost:5002/auth/approve-profile/${userId}`, {
+      const response = await fetch(`https://ap-project-v67b.onrender.com/auth/approve-profile/${userId}`, {
         method: 'POST',
         headers: { 'Authorization': `Bearer ${token}` }
       });
@@ -56,7 +56,7 @@ function ProfileApproval() {
     try {
       console.log('Disapproving user ID:', userId);
       const token = localStorage.getItem('token');
-      const response = await fetch(`http://localhost:5002/auth/disapprove-profile/${userId}`, {
+      const response = await fetch(`https://ap-project-v67b.onrender.com/auth/disapprove-profile/${userId}`, {
         method: 'POST',
         headers: { 'Authorization': `Bearer ${token}` }
       });

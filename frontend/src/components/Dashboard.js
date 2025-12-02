@@ -62,7 +62,7 @@ function Overview() {
       
       // Fetch user profile
       try {
-        const profileResponse = await fetch('http://localhost:5002/auth/my-profile', {
+        const profileResponse = await fetch('https://ap-project-v67b.onrender.com/auth/my-profile', {
           headers: { 'Authorization': `Bearer ${token}` }
         });
         if (profileResponse.ok) {
@@ -75,7 +75,7 @@ function Overview() {
       
       // Fetch my allotment
       try {
-        const allotmentResponse = await fetch('http://localhost:5002/allotment/my', {
+        const allotmentResponse = await fetch('https://ap-project-v67b.onrender.com/allotment/my', {
           headers: { 'Authorization': `Bearer ${token}` }
         });
         if (allotmentResponse.ok) {
@@ -87,7 +87,7 @@ function Overview() {
       }
       
       // Fetch available rooms count
-      const roomsResponse = await fetch('http://localhost:5002/rooms/all', {
+      const roomsResponse = await fetch('https://ap-project-v67b.onrender.com/rooms/all', {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const roomsData = await roomsResponse.json();
@@ -279,7 +279,7 @@ function RoomList() {
       const payload = JSON.parse(atob(token.split('.')[1]));
       setUserYear(payload.year || 1);
       
-      const response = await fetch('http://localhost:5002/auth/my-profile', {
+      const response = await fetch('https://ap-project-v67b.onrender.com/auth/my-profile', {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       
@@ -307,7 +307,7 @@ function RoomList() {
   const checkMyAllotment = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:5002/allotment/my', {
+      const response = await fetch('https://ap-project-v67b.onrender.com/allotment/my', {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       if (response.ok) {
@@ -327,7 +327,7 @@ function RoomList() {
         return;
       }
       
-      const response = await fetch('http://localhost:5002/rooms/all', {
+      const response = await fetch('https://ap-project-v67b.onrender.com/rooms/all', {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       
@@ -348,7 +348,7 @@ function RoomList() {
   const handleApply = async (roomId) => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`http://localhost:5002/allotment/apply/${roomId}`, {
+      const response = await fetch(`https://ap-project-v67b.onrender.com/allotment/apply/${roomId}`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -412,7 +412,7 @@ function RoomList() {
       
       try {
         const token = localStorage.getItem('token');
-        const response = await fetch('http://localhost:5002/allotment/random-allocate', {
+        const response = await fetch('https://ap-project-v67b.onrender.com/allotment/random-allocate', {
           method: 'POST',
           headers: {
             'Authorization': `Bearer ${token}`,
@@ -596,7 +596,7 @@ function ApplicationStatus() {
       console.log('Fetching application status...');
       
       // Get user profile status using new endpoint
-      const profileResponse = await fetch('http://localhost:5002/auth/my-profile', {
+      const profileResponse = await fetch('https://ap-project-v67b.onrender.com/auth/my-profile', {
         headers: { 
           'Authorization': `Bearer ${token}`
         }
@@ -625,7 +625,7 @@ function ApplicationStatus() {
       
       // Get allotment status
       try {
-        const allotmentResponse = await fetch('http://localhost:5002/allotment/my', {
+        const allotmentResponse = await fetch('https://ap-project-v67b.onrender.com/allotment/my', {
           headers: { 'Authorization': `Bearer ${token}` }
         });
         if (allotmentResponse.ok) {
@@ -805,7 +805,7 @@ function Profile() {
     e.preventDefault();
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:5002/auth/profile', {
+      const response = await fetch('https://ap-project-v67b.onrender.com/auth/profile', {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

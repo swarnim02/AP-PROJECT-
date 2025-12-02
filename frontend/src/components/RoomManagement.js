@@ -22,7 +22,7 @@ function RoomManagement() {
   const fetchRooms = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:5002/admin/rooms', {
+      const response = await fetch('https://ap-project-v67b.onrender.com/admin/rooms', {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const data = await response.json();
@@ -37,8 +37,8 @@ function RoomManagement() {
     e.preventDefault();
     const token = localStorage.getItem('token');
     const url = editingRoom 
-      ? `http://localhost:5002/rooms/update/${editingRoom.id}`
-      : 'http://localhost:5002/rooms/create';
+      ? `https://ap-project-v67b.onrender.com/rooms/update/${editingRoom.id}`
+      : 'https://ap-project-v67b.onrender.com/rooms/create';
     
     try {
       await fetch(url, {
@@ -80,7 +80,7 @@ function RoomManagement() {
     
     try {
       const token = localStorage.getItem('token');
-      await fetch(`http://localhost:5002/rooms/delete/${roomId}`, {
+      await fetch(`https://ap-project-v67b.onrender.com/rooms/delete/${roomId}`, {
         method: 'DELETE',
         headers: { 'Authorization': `Bearer ${token}` }
       });

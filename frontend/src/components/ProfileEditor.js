@@ -37,7 +37,7 @@ function ProfileEditor() {
     try {
       const token = localStorage.getItem('token');
 
-      const response = await fetch('http://localhost:5002/auth/profile', {
+      const response = await fetch('https://ap-project-v67b.onrender.com/auth/profile', {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
