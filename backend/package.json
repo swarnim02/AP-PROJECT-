@@ -4,10 +4,11 @@
   "description": "📑 Project Report & Plan Project Title: Hostel Room Allotment System",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
+    "start": "node init-database.js && node server.js",
     "dev": "node server.js",
     "create-admin": "node create-admin.js",
     "setup-db": "node setup-db.js",
+    "init-db": "node init-database.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

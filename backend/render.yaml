@@ -2,7 +2,7 @@ services:
   - type: web
     name: hostel-backend
     env: node
-    buildCommand: npm install && npx prisma generate && npx prisma db push && node force-setup.js
+    buildCommand: npm install && npx prisma generate && node init-database.js
     startCommand: npm start
     envVars:
       - key: NODE_ENV
