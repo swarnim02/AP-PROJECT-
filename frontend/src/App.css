@@ -1246,11 +1246,12 @@ body {
 .timeline-step:not(:last-child)::after {
   content: '';
   position: absolute;
-  left: 25px;
-  top: 80px;
+  left: 47px;
+  top: 70px;
   width: 3px;
-  height: 40px;
+  height: 50px;
   background: #ddd;
+  z-index: 1;
 }
 
 .timeline-step.completed:not(:last-child)::after {
