@@ -194,7 +194,7 @@ PORT=5002
 | **Ishita** | Authentication | User signup, login, JWT tokens |
 | **Swarnim** | Room Management | CRUD operations for rooms |
 | **Ansh** | Allotment System | Application processing |
-| **Core Team** | Integration | Frontend, API integration, deployment |
+| **Atharva** | Integration | Frontend, API integration, deployment |
 
 ## 🚀 Getting Started
 
@@ -261,6 +261,4 @@ PORT=5002
 - **Mobile:** Bottom navigation tabs
 - **All devices:** Touch-friendly interfaces
 
----
 
-**Built with ❤️ by Team Devs**
