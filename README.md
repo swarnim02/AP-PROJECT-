@@ -2,10 +2,23 @@
 
 A comprehensive full-stack web application for managing hostel room allocations with separate student and admin portals.
 
+## 🌐 Live Demo
+
+- **Frontend**: https://ap-project-1-a3e5.onrender.com
+- **Backend API**: https://ap-project-v67b.onrender.com
+
+## 🔐 Admin Access for Evaluators
+
+**Admin Login Credentials:**
+- **Email**: `admin@hostel.com`
+- **Password**: `admin123`
+
+Use these credentials to access the admin panel and test all administrative features including room management, user management, and profile approvals.
+
 ## 🚀 Project Overview
 
 **Team:** Devs  
-**Tech Stack:** Node.js + Express + React + Prisma + MySQL  
+**Tech Stack:** Node.js + Express + React + Prisma + PostgreSQL  
 **Architecture:** Full-stack web application with REST API
 
 ## 📁 Project Structure
@@ -50,50 +63,17 @@ AP-PROJECT-/
 
 ### Backend
 - **Framework:** Node.js + Express.js
-- **Database:** MySQL with Prisma ORM
+- **Database:** PostgreSQL with Prisma ORM
 - **Authentication:** JWT (JSON Web Tokens)
 - **API:** RESTful endpoints
-- **Port:** 5002
+- **Deployment:** Render
 
 ### Frontend
 - **Framework:** React 18
 - **Routing:** React Router DOM
 - **Styling:** Pure CSS (Black & White Theme)
 - **HTTP Client:** Fetch API
-- **Port:** 5174
-## 📊 Database Schema
-
-### ER Diagram
-![ER Diagram](docs/ER-Diagram.png)
-## 🔧 Installation & Setup
-
-### Prerequisites
-- Node.js (v16+)
-- MySQL Database
-- Git
-
-### Backend Setup
-```bash
-cd backend
-npm install
-npx prisma db push
-npm start
-```
-
-### Frontend Setup
-```bash
-cd frontend
-npm install
-npm start
-```
-
-### Environment Variables
-Create `.env` in backend folder:
-```env
-DATABASE_URL="mysql://username:password@localhost:3306/hostel_room_allotment"
-JWT_SECRET="your_jwt_secret_key"
-PORT=5002
-```
+- **Deployment:** Render Static Site
 
 ## 🎯 Features
 
@@ -198,17 +178,20 @@ PORT=5002
 
 ## 🚀 Getting Started
 
+### Prerequisites
+- Node.js (v16+)
+- PostgreSQL Database
+- Git
+
+### Local Development
+
 1. **Clone Repository**
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/swarnim02/AP-PROJECT-.git
    cd AP-PROJECT-
    ```
 
-2. **Setup Database**
-   - Create MySQL database
-   - Update connection string in `.env`
-
-3. **Start Backend**
+2. **Setup Backend**
    ```bash
    cd backend
    npm install
@@ -216,16 +199,20 @@ PORT=5002
    npm start
    ```
 
-4. **Start Frontend**
+3. **Setup Frontend**
    ```bash
    cd frontend
    npm install
    npm start
    ```
 
-5. **Access Application**
-   - Frontend: http://localhost:5174
-   - Backend API: http://localhost:5002
+4. **Environment Variables**
+   Create `.env` in backend folder:
+   ```env
+   DATABASE_URL="postgresql://username:password@localhost:5432/hostel_db"
+   JWT_SECRET="your_jwt_secret_key"
+   PORT=5002
+   ```
 
 ## 📝 Usage Guide
 
@@ -240,7 +227,7 @@ PORT=5002
 6. **Track Status:** Monitor profile approval and room allocation progress
 
 ### For Admins
-1. **Login:** Access admin dashboard with admin credentials
+1. **Login:** Use admin credentials provided above
 2. **Profile Management:** Review and approve/reject student profiles
 3. **Room Management:** Create, update, delete rooms with capacity and gender settings
 4. **User Monitoring:** View all students with their profile and room status
@@ -261,4 +248,19 @@ PORT=5002
 - **Mobile:** Bottom navigation tabs
 - **All devices:** Touch-friendly interfaces
 
+## 🚀 Deployment
 
+The application is deployed on Render:
+- **Frontend:** Static site deployment
+- **Backend:** Web service deployment
+- **Database:** PostgreSQL database
+
+## 📞 Support
+
+For any issues or questions:
+- **Email:** support@hostelsystem.com
+- **GitHub:** [Repository Issues](https://github.com/swarnim02/AP-PROJECT-/issues)
+
+---
+
+**© 2024 Hostel Room Allotment System - Built by Team Devs**
