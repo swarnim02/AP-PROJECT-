@@ -1233,87 +1233,7 @@ body {
   font-weight: 900;
 }
 
-/* Timeline Styles */
-.timeline-container {
-  background: #fff;
-  border: 3px solid #000;
-  padding: 40px;
-  margin-bottom: 30px;
-  transition: all 0.3s ease;
-}
 
-.timeline-container:hover {
-  transform: translateY(-4px);
-  box-shadow: 12px 12px 0px #000;
-}
-
-.timeline-container h4 {
-  font-size: 24px;
-  font-weight: 900;
-  margin-bottom: 30px;
-  color: #000;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  text-align: center;
-  border-bottom: 3px solid #000;
-  padding-bottom: 15px;
-}
-
-.timeline {
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-}
-
-.timeline-step {
-  display: flex;
-  align-items: flex-start;
-  gap: 20px;
-  padding: 20px;
-  border: 2px solid #000;
-  background: #fff;
-  transition: all 0.3s ease;
-  margin-bottom: 20px;
-}
-
-.timeline-step:hover {
-  transform: translateX(8px);
-  box-shadow: 8px 8px 0px #000;
-}
-
-
-
-.timeline-marker {
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background: #000;
-  flex-shrink: 0;
-  border: 3px solid #000;
-  transition: all 0.3s ease;
-}
-
-.timeline-content {
-  flex: 1;
-  padding-top: 8px;
-}
-
-.timeline-content h5 {
-  font-size: 18px;
-  font-weight: 700;
-  margin-bottom: 8px;
-  color: #000;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-.timeline-content p {
-  font-size: 14px;
-  color: #666;
-  margin: 0;
-  font-weight: 500;
-  line-height: 1.5;
-}
 
 /* Application Steps */
 .steps-container {
@@ -1575,22 +1495,23 @@ body {
 }
 
 .approve-btn {
-  background: #28a745;
+  background: #000;
   color: #fff;
-  border: none;
-  padding: 10px 16px;
-  font-size: 13px;
-  font-weight: 500;
-  cursor: pointer;
-  border-radius: 4px;
-  transition: all 0.2s ease;
+  border: 3px solid #000;
+  padding: 14px 20px;
+  font-size: 14px;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 .approve-btn:hover {
-  background: #218838;
-  transform: translateY(-1px);
+  background: #fff;
+  color: #000;
+  transform: translateY(-2px);
+  box-shadow: 6px 6px 0px #000;
 }
 
 .reject-btn {
@@ -1682,9 +1603,9 @@ body {
 }
 
 .status-approved {
-  background: #d4edda;
-  color: #155724;
-  border: 1px solid #c3e6cb;
+  background: #000;
+  color: #fff;
+  border: 1px solid #000;
 }
 
 .status-rejected {
@@ -1706,12 +1627,12 @@ body {
 }
 
 .room-allocated {
-  color: #28a745;
+  color: #000;
   font-weight: 600;
   background: #f8f9fa;
   padding: 4px 8px;
   border-radius: 3px;
-  border: 1px solid #dee2e6;
+  border: 1px solid #000;
 }
 
 .role-badge {
@@ -2986,4 +2907,1012 @@ body {
 
 .approval-step strong {
   color: #000;
+}
+
+/* Status Badge Styles */
+.status-badge {
+  display: inline-block;
+  padding: 8px 16px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border: 2px solid #000;
+  margin: 10px 0;
+}
+
+.status-approved {
+  background: #000;
+  color: #fff;
+  border-color: #000;
+}
+
+.status-in-progress {
+  background: #fff;
+  color: #000;
+  border-color: #000;
+}
+
+.status-disapproved {
+  background: #fff;
+  color: #000;
+  border-color: #000;
+}
+
+.status-not-applied {
+  background: #f5f5f5;
+  color: #666;
+  border-color: #666;
+}
+
+/* Profile Cards and Lists */
+.profiles-list {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.profile-card {
+  background: #fff;
+  border: 3px solid #000;
+  padding: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  transition: all 0.3s ease;
+}
+
+.profile-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 12px 12px 0px #000;
+}
+
+.profile-info {
+  flex: 1;
+}
+
+.profile-info h4 {
+  margin-bottom: 20px;
+  color: #000;
+  font-size: 22px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-bottom: 2px solid #000;
+  padding-bottom: 10px;
+}
+
+.profile-details {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+.profile-details p {
+  margin: 0;
+  font-size: 14px;
+  color: #000;
+  font-weight: 500;
+}
+
+.profile-details strong {
+  color: #000;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.profile-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  min-width: 140px;
+  align-items: stretch;
+}
+
+.approve-btn {
+  background: #000;
+  color: #fff;
+  border: 3px solid #000;
+  padding: 14px 20px;
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.approve-btn:hover {
+  background: #fff;
+  color: #000;
+  transform: translateY(-2px);
+  box-shadow: 6px 6px 0px #000;
+}
+
+.reject-btn {
+  background: #fff;
+  color: #000;
+  border: 3px solid #000;
+  padding: 14px 20px;
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.reject-btn:hover {
+  background: #000;
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 6px 6px 0px #666;
+}
+
+/* No Data Message */
+.no-data {
+  background: #fff;
+  border: 3px solid #000;
+  padding: 40px;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 700;
+  color: #000;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+}
+
+.no-data:hover {
+  transform: translateY(-4px);
+  box-shadow: 12px 12px 0px #000;
+}
+
+/* Recent Activity Styles */
+.recent-activity {
+  background: #fff;
+  border: 3px solid #000;
+  padding: 30px;
+  margin-top: 30px;
+  transition: all 0.3s ease;
+}
+
+.recent-activity:hover {
+  transform: translateY(-4px);
+  box-shadow: 12px 12px 0px #000;
+}
+
+.recent-activity h3 {
+  font-size: 20px;
+  font-weight: 900;
+  margin-bottom: 20px;
+  color: #000;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-bottom: 2px solid #000;
+  padding-bottom: 10px;
+}
+
+.activity-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.activity-item {
+  padding: 15px;
+  border: 2px solid #000;
+  background: #fff;
+  font-weight: 600;
+  color: #000;
+  transition: all 0.3s ease;
+}
+
+.activity-item:hover {
+  transform: translateX(8px);
+  box-shadow: 8px 8px 0px #000;
+}
+
+/* Allocation Details Styles */
+.allocation-details {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 30px;
+  margin-top: 30px;
+}
+
+.room-details-card,
+.profile-details-card,
+.hostel-info-card {
+  background: #fff;
+  border: 3px solid #000;
+  padding: 30px;
+  transition: all 0.3s ease;
+}
+
+.room-details-card:hover,
+.profile-details-card:hover,
+.hostel-info-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 12px 12px 0px #000;
+}
+
+.room-details-card h3,
+.profile-details-card h3,
+.hostel-info-card h3 {
+  font-size: 20px;
+  font-weight: 900;
+  margin-bottom: 20px;
+  color: #000;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-bottom: 2px solid #000;
+  padding-bottom: 10px;
+}
+
+.detail-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+.detail-item {
+  padding: 10px;
+  border: 1px solid #000;
+  background: #f8f8f8;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.detail-item strong {
+  color: #000;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.info-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.info-item {
+  padding: 12px;
+  border: 1px solid #000;
+  background: #f8f8f8;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.info-item strong {
+  color: #000;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Allocation Status Styles */
+.allocation-status {
+  background: #fff;
+  border: 3px solid #000;
+  padding: 40px;
+  text-align: center;
+  margin: 30px 0;
+  transition: all 0.3s ease;
+}
+
+.allocation-status:hover {
+  transform: translateY(-4px);
+  box-shadow: 12px 12px 0px #000;
+}
+
+.allocation-status h3 {
+  font-size: 24px;
+  font-weight: 900;
+  margin-bottom: 20px;
+  color: #000;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.allocated-room-info {
+  margin-top: 20px;
+  padding: 20px;
+  border: 2px solid #000;
+  background: #f8f8f8;
+}
+
+.allocated-room-info p {
+  margin: 8px 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #000;
+}
+
+.allocated-room-info strong {
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Random Allocation Styles */
+.random-allocation-section {
+  background: #fff;
+  border: 3px solid #000;
+  padding: 40px;
+  text-align: center;
+  margin: 30px 0;
+  transition: all 0.3s ease;
+}
+
+.random-allocation-section:hover {
+  transform: translateY(-4px);
+  box-shadow: 12px 12px 0px #000;
+}
+
+.random-allocation-section h3 {
+  font-size: 24px;
+  font-weight: 900;
+  margin-bottom: 20px;
+  color: #000;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.random-allocate-btn {
+  background: #000;
+  color: #fff;
+  border: 3px solid #000;
+  padding: 20px 40px;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 20px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  transition: all 0.3s ease;
+}
+
+.random-allocate-btn:hover {
+  background: #fff;
+  color: #000;
+  transform: translateY(-4px);
+  box-shadow: 12px 12px 0px #000;
+}
+
+.random-allocate-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Allocation Spinner */
+.allocation-spinner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  padding: 40px;
+}
+
+.spinner-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.spinning-wheel {
+  width: 120px;
+  height: 120px;
+  border: 8px solid #f3f3f3;
+  border-top: 8px solid #000;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+.room-number-display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.room-label {
+  font-size: 16px;
+  font-weight: 700;
+  color: #000;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.spinning-number {
+  font-size: 48px;
+  font-weight: 900;
+  color: #000;
+  font-family: 'Courier New', monospace;
+  min-width: 120px;
+  text-align: center;
+  border: 3px solid #000;
+  padding: 10px 20px;
+  background: #fff;
+}
+
+.allocation-text {
+  font-size: 18px;
+  font-weight: 600;
+  color: #000;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.progress-bar {
+  width: 300px;
+  height: 8px;
+  background: #f3f3f3;
+  border: 2px solid #000;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: #000;
+  animation: progress 10s linear;
+}
+
+@keyframes progress {
+  from { width: 0%; }
+  to { width: 100%; }
+}
+
+/* Available Rooms Section */
+.available-rooms-section {
+  background: #fff;
+  border: 3px solid #000;
+  padding: 30px;
+  margin: 30px 0;
+  transition: all 0.3s ease;
+}
+
+.available-rooms-section:hover {
+  transform: translateY(-4px);
+  box-shadow: 12px 12px 0px #000;
+}
+
+.available-rooms-section h3 {
+  font-size: 20px;
+  font-weight: 900;
+  margin-bottom: 20px;
+  color: #000;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-bottom: 2px solid #000;
+  padding-bottom: 10px;
+}
+/* Tab Buttons */
+.tab-buttons {
+  display: flex;
+  gap: 15px;
+  margin: 20px 0;
+}
+
+.tab-btn {
+  background: #fff;
+  color: #000;
+  border: 3px solid #000;
+  padding: 12px 24px;
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.tab-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 6px 6px 0px #000;
+}
+
+.tab-btn.active {
+  background: #000;
+  color: #fff;
+}
+
+/* Table Styles */
+.users-table {
+  background: #fff;
+  border: 3px solid #000;
+  margin-top: 20px;
+  transition: all 0.3s ease;
+}
+
+.users-table:hover {
+  transform: translateY(-4px);
+  box-shadow: 12px 12px 0px #000;
+}
+
+.table-header,
+.table-header-admin {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  background: #000;
+  color: #fff;
+  padding: 20px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 14px;
+}
+
+.table-header-admin {
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.table-row,
+.table-row-admin {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  padding: 20px;
+  border-bottom: 2px solid #000;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.table-row-admin {
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.table-row:hover,
+.table-row-admin:hover {
+  background: #f8f8f8;
+  transform: translateX(8px);
+  box-shadow: 8px 8px 0px #000;
+}
+
+.table-row:last-child,
+.table-row-admin:last-child {
+  border-bottom: none;
+}
+
+/* Status Badges for Tables */
+.status-approved {
+  background: #000;
+  color: #fff;
+  padding: 4px 8px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border: 1px solid #000;
+}
+
+.status-pending {
+  background: #fff;
+  color: #000;
+  padding: 4px 8px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border: 1px solid #000;
+}
+
+.status-rejected,
+.status-incomplete {
+  background: #f5f5f5;
+  color: #666;
+  padding: 4px 8px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border: 1px solid #666;
+}
+
+.room-allocated {
+  color: #000;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.room-not-allocated {
+  color: #666;
+  font-weight: 500;
+  font-style: italic;
+}
+
+.role-badge {
+  background: #000;
+  color: #fff;
+  padding: 4px 8px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border: 1px solid #000;
+  display: inline-block;
+}
+
+/* Header Actions */
+.header-actions {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.filter-select {
+  background: #fff;
+  border: 3px solid #000;
+  padding: 10px 15px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #000;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+}
+
+.filter-select:focus {
+  outline: none;
+  box-shadow: 4px 4px 0px #000;
+}
+
+/* Room Status in Cards */
+.status-available {
+  color: #000;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.status-occupied {
+  color: #666;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Loading Spinner Enhancement */
+.loading-spinner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px;
+  background: #fff;
+  border: 3px solid #000;
+  margin: 30px 0;
+}
+
+.loading-spinner h3 {
+  margin-top: 20px;
+  color: #000;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Enhanced Room Cards */
+.room-card {
+  background: #fff;
+  border: 3px solid #000;
+  padding: 25px;
+  transition: all 0.3s ease;
+  margin-bottom: 20px;
+}
+
+.room-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 12px 12px 0px #000;
+}
+
+.room-card h4 {
+  font-size: 20px;
+  font-weight: 900;
+  margin-bottom: 15px;
+  color: #000;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-bottom: 2px solid #000;
+  padding-bottom: 8px;
+}
+
+.room-card p {
+  margin: 8px 0;
+  font-size: 14px;
+  color: #000;
+  font-weight: 500;
+}
+
+.room-card p strong {
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-right: 8px;
+  color: #000;
+}
+
+.room-card p span {
+  color: #666;
+  font-weight: 600;
+}
+
+/* Content Header Enhancement */
+.content-header {
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 3px solid #000;
+}
+
+.content-header h2 {
+  font-size: 28px;
+  font-weight: 900;
+  color: #000;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+}
+
+.content-header p {
+  font-size: 16px;
+  color: #666;
+  font-weight: 500;
+  margin: 0;
+}
+
+/* Room Grid Enhancement */
+.room-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 25px;
+  margin-top: 30px;
+}
+
+/* Status Message Enhancement */
+.status-message {
+  font-size: 16px;
+  color: #000;
+  font-weight: 600;
+  margin: 15px 0;
+  line-height: 1.5;
+}
+
+.status-action {
+  font-size: 14px;
+  color: #666;
+  font-weight: 500;
+  font-style: italic;
+  margin: 10px 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .table-header,
+  .table-row {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  
+  .table-header div,
+  .table-row div {
+    padding: 8px 0;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .room-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .header-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .tab-buttons {
+    flex-direction: column;
+  }
+  
+  .detail-grid {
+    grid-template-columns: 1fr;
+  }
+}
+/* Timeline Styles */
+.timeline-container {
+  background: #fff;
+  border: 3px solid #000;
+  padding: 30px;
+  margin-bottom: 30px;
+  transition: all 0.3s ease;
+}
+
+.timeline-container:hover {
+  transform: translateY(-2px);
+  box-shadow: 8px 8px 0px #000;
+}
+
+.timeline-container h4 {
+  font-size: 20px;
+  font-weight: 900;
+  margin-bottom: 25px;
+  color: #000;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-align: center;
+  border-bottom: 2px solid #000;
+  padding-bottom: 10px;
+}
+
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.timeline-step {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+  border: 2px solid #000;
+  background: #fff;
+  transition: all 0.3s ease;
+}
+
+.timeline-step:hover {
+  transform: translateX(4px);
+  box-shadow: 4px 4px 0px #000;
+}
+
+.timeline-step.completed {
+  background: #000;
+  color: #fff;
+}
+
+.timeline-step.completed .timeline-marker {
+  background: #fff;
+  color: #000;
+}
+
+.timeline-step.completed .timeline-content h5 {
+  color: #000 !important;
+  background: transparent !important;
+}
+
+.timeline-step.completed .timeline-content p {
+  color: #333 !important;
+  background: transparent !important;
+}
+
+.timeline-step.completed .timeline-content {
+  background: transparent !important;
+}
+
+.timeline-step.active {
+  border-color: #000;
+  background: #f8f8f8;
+}
+
+.timeline-step.pending {
+  border-color: #ccc;
+  background: #f9f9f9;
+}
+
+.timeline-step.pending .timeline-marker {
+  background: #ccc;
+  color: #fff;
+}
+
+.timeline-step.pending .timeline-content h5 {
+  color: #999;
+}
+
+.timeline-marker {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #000;
+  color: #fff;
+  flex-shrink: 0;
+  border: 2px solid #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.timeline-content {
+  flex: 1;
+}
+
+.timeline-content h5 {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 5px;
+  color: #000;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.timeline-content p {
+  font-size: 14px;
+  color: #666;
+  margin: 0;
+  font-weight: 500;
+  line-height: 1.4;
+}
+/* Override any green colors */
+.timeline-step.completed .timeline-marker,
+.timeline-marker.completed,
+.status-approved,
+.room-allocated,
+.approved,
+.success {
+  background: #000 !important;
+  color: #fff !important;
+  border: 2px solid #000 !important;
+  border-color: #000 !important;
+}
+
+/* Remove any green tick marks */
+.timeline-marker::before,
+.timeline-marker::after {
+  content: none !important;
+}
+
+/* Ensure checkmark is white on black */
+.timeline-step.completed .timeline-marker {
+  background: #000 !important;
+  color: #fff !important;
+  border: 2px solid #000 !important;
+}
+/* Remove all connecting lines and green elements */
+.timeline::before,
+.timeline::after,
+.timeline-step::before,
+.timeline-step::after,
+.timeline-container::before,
+.timeline-container::after {
+  display: none !important;
+  content: none !important;
+}
+
+/* Remove any pseudo-elements that might create lines */
+* {
+  position: relative;
+}
+
+*::before,
+*::after {
+  border: none !important;
+  background: transparent !important;
+}
+
+/* Specifically target timeline elements */
+.timeline *,
+.timeline-step *,
+.timeline-marker * {
+  border-color: #000 !important;
+  background-color: transparent !important;
+}
+
+.timeline-step.completed * {
+  background-color: #000 !important;
+  color: #fff !important;
+}
+
+/* Override any framework styles */
+.timeline-step.completed .timeline-marker {
+  background: #000 !important;
+  color: #fff !important;
+  border: 2px solid #000 !important;
+}
+
+/* Remove any connecting elements */
+.timeline-step + .timeline-step::before {
+  display: none !important;
 }

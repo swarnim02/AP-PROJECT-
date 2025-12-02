@@ -2,7 +2,7 @@
   "name": "ap-project-",
   "version": "1.0.0",
   "description": "📑 Project Report & Plan Project Title: Hostel Room Allotment System",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "start": "node server.js",
     "dev": "node server.js",
