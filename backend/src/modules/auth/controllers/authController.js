@@ -45,23 +45,43 @@ const signup = async (req, res) => {
 // LOGIN
 const login = async (req, res) => {
     try {
+      console.log('=== LOGIN ATTEMPT ===');
       const { email, password } = req.body;
+      console.log('Login attempt for email:', email);
   
       const err = validateLogin(email, password);
-      if (err) return res.status(400).json({ message: err });
+      if (err) {
+        console.log('Validation error:', err);
+        return res.status(400).json({ message: err });
+      }
   
+      console.log('Searching for user in database...');
       const user = await prisma.user.findUnique({ where: { email } });
-      if (!user) return res.status(400).json({ message: "User not found" });
+      
+      if (!user) {
+        console.log('User not found for email:', email);
+        return res.status(400).json({ message: "User not found" });
+      }
+      
+      console.log('User found:', user.email, 'Role:', user.role);
   
       const valid = await bcrypt.compare(password, user.password);
-      if (!valid) return res.status(400).json({ message: "Invalid password" });
-  
+      if (!valid) {
+        console.log('Invalid password for user:', email);
+        return res.status(400).json({ message: "Invalid password" });
+      }
+      
+      console.log('Password valid, generating token...');
       const token = generateToken(user);
+      console.log('Token generated successfully');
+      console.log('=== LOGIN SUCCESS ===');
   
       res.json({ message: "Login successful", token });
   
     } catch (err) {
-      console.error('Login error:', err);
+      console.error('=== LOGIN ERROR ===');
+      console.error('Error details:', err);
+      console.error('Stack trace:', err.stack);
       res.status(500).json({ error: 'Server error during login' });
     }
   };
