@@ -1,4 +1,4 @@
-const API_BASE_URL = 'http://localhost:5002';
+const API_BASE_URL = 'https://ap-project-v67b.onrender.com';
 // Frontend now runs on port 5174
 
 const api = {
