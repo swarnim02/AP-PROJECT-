@@ -6,7 +6,7 @@ if (process.env.NODE_ENV === 'production') {
   prisma = new PrismaClient({
     datasources: {
       db: {
-        url: process.env.DATABASE_URL + '?pgbouncer=true&connection_limit=1',
+        url: process.env.DATABASE_URL + '?pgbouncer=true&connection_limit=1&prepared_statements=false',
       },
     },
   });
