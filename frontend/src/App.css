@@ -1243,40 +1243,20 @@ body {
   box-shadow: 8px 8px 0px #000;
 }
 
-.timeline-step:not(:last-child)::after {
-  content: '';
-  position: absolute;
-  left: 47px;
-  top: 70px;
-  width: 3px;
-  height: 50px;
-  background: #ddd;
-  z-index: 1;
-}
 
-.timeline-step.completed:not(:last-child)::after {
-  background: #28a745;
-}
-
-.timeline-step.active:not(:last-child)::after {
-  background: #ffc107;
-}
-
-.timeline-step.rejected:not(:last-child)::after {
-  background: #dc3545;
-}
 
 .timeline-marker {
-  width: 50px;
-  height: 50px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: 900;
-  font-size: 18px;
+  font-size: 20px;
   flex-shrink: 0;
-  border: 3px solid #000;
+  border: 4px solid #000;
+  transition: all 0.3s ease;
 }
 
 .timeline-step.pending .timeline-marker {
@@ -1414,7 +1394,7 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0,0,0,0.5);
+  background: rgba(0,0,0,0.7);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1423,21 +1403,71 @@ body {
 
 .room-form {
   background: #fff;
-  padding: 30px;
-  border: 1px solid #ddd;
-  max-width: 400px;
+  padding: 40px;
+  border: 3px solid #000;
+  max-width: 500px;
   width: 90%;
+  transition: all 0.3s ease;
+}
+
+.room-form:hover {
+  transform: translateY(-4px);
+  box-shadow: 12px 12px 0px #000;
 }
 
 .room-form h3 {
-  margin-bottom: 20px;
+  margin-bottom: 30px;
   color: #000;
+  font-size: 24px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-align: center;
+  border-bottom: 3px solid #000;
+  padding-bottom: 15px;
 }
 
 .form-actions {
   display: flex;
-  gap: 10px;
-  margin-top: 20px;
+  gap: 15px;
+  margin-top: 30px;
+  justify-content: center;
+}
+
+.form-actions .submit-btn,
+.form-actions .cancel-btn {
+  padding: 14px 28px;
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border: 3px solid #000;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.form-actions .submit-btn {
+  background: #000;
+  color: #fff;
+}
+
+.form-actions .submit-btn:hover {
+  background: #fff;
+  color: #000;
+  transform: translateY(-2px);
+  box-shadow: 6px 6px 0px #000;
+}
+
+.form-actions .cancel-btn {
+  background: #fff;
+  color: #000;
+}
+
+.form-actions .cancel-btn:hover {
+  background: #000;
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 6px 6px 0px #666;
 }
 
 .room-actions {
