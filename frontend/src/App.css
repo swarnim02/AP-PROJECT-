@@ -74,16 +74,27 @@ body {
 }
 
 .module {
-  border: 1px solid #ddd;
+  border: 3px solid #000;
   padding: 30px;
-  background: #fafafa;
+  background: #fff;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.module:hover {
+  transform: translateY(-6px);
+  box-shadow: 12px 12px 0px #000;
 }
 
 .module h3 {
-  font-size: 18px;
-  font-weight: 500;
-  margin-bottom: 16px;
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 20px;
   color: #000;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  border-bottom: 2px solid #000;
+  padding-bottom: 10px;
 }
 
 .module ul {
@@ -91,17 +102,24 @@ body {
 }
 
 .module li {
-  padding: 6px 0;
-  color: #555;
+  padding: 10px 0;
+  color: #000;
   position: relative;
-  padding-left: 16px;
+  padding-left: 20px;
+  font-weight: 500;
+  border-bottom: 1px solid #eee;
+}
+
+.module li:last-child {
+  border-bottom: none;
 }
 
 .module li:before {
-  content: '•';
+  content: '▶';
   position: absolute;
   left: 0;
   color: #000;
+  font-weight: 700;
 }
 
 .auth-section {
@@ -117,14 +135,16 @@ body {
 }
 
 .btn {
-  padding: 12px 32px;
+  padding: 16px 40px;
   text-decoration: none;
-  font-weight: 500;
+  font-weight: 700;
   font-size: 14px;
-  border: 1px solid #000;
-  transition: all 0.2s;
+  border: 3px solid #000;
+  transition: all 0.3s ease;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 1px;
+  position: relative;
+  display: inline-block;
 }
 
 .login-btn {
@@ -133,7 +153,10 @@ body {
 }
 
 .login-btn:hover {
-  background: #333;
+  background: #fff;
+  color: #000;
+  transform: translateY(-4px);
+  box-shadow: 8px 8px 0px #000;
 }
 
 .signup-btn {
@@ -142,16 +165,347 @@ body {
 }
 
 .signup-btn:hover {
-  background: #f5f5f5;
+  background: #000;
+  color: #fff;
+  transform: translateY(-4px);
+  box-shadow: 8px 8px 0px #666;
 }
 
-.footer {
-  background: #f8f8f8;
-  padding: 20px;
-  text-align: center;
-  border-top: 1px solid #eee;
-  color: #666;
+/* Navigation Styles */
+.navbar {
+  background: #000;
+  border-bottom: 3px solid #fff;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.nav-logo h2 {
+  color: #fff;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  margin: 0;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.nav-link {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
   font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+  padding: 20px 0;
+}
+
+.nav-link:hover {
+  color: #ccc;
+  transform: translateY(-2px);
+}
+
+.nav-auth {
+  display: flex;
+  gap: 15px;
+}
+
+.nav-btn {
+  padding: 10px 20px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 12px;
+  border: 2px solid #fff;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.login-nav-btn {
+  background: #fff;
+  color: #000;
+}
+
+.login-nav-btn:hover {
+  background: #000;
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+.signup-nav-btn {
+  background: #000;
+  color: #fff;
+}
+
+.signup-nav-btn:hover {
+  background: #fff;
+  color: #000;
+  transform: translateY(-2px);
+}
+
+/* Hero Section */
+.hero-section {
+  background: #000;
+  color: #fff;
+  padding: 80px 20px;
+  text-align: center;
+  border-bottom: 3px solid #fff;
+}
+
+.hero-content h1 {
+  font-size: 48px;
+  font-weight: 900;
+  margin-bottom: 20px;
+  letter-spacing: 3px;
+  line-height: 1.2;
+}
+
+.hero-content p {
+  font-size: 20px;
+  margin-bottom: 40px;
+  opacity: 0.9;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hero-stats {
+  display: flex;
+  justify-content: center;
+  gap: 60px;
+  margin-top: 60px;
+}
+
+.stat-item {
+  text-align: center;
+}
+
+.stat-number {
+  display: block;
+  font-size: 36px;
+  font-weight: 900;
+  color: #fff;
+  margin-bottom: 8px;
+}
+
+.stat-label {
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  opacity: 0.8;
+}
+
+/* Features Section */
+.features-section {
+  padding: 80px 20px;
+  text-align: center;
+}
+
+.features-section h2 {
+  font-size: 36px;
+  font-weight: 900;
+  margin-bottom: 60px;
+  letter-spacing: 2px;
+  color: #000;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.feature-card {
+  border: 3px solid #000;
+  padding: 40px;
+  background: #fff;
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.feature-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 16px 16px 0px #000;
+}
+
+.feature-icon {
+  font-size: 48px;
+  margin-bottom: 20px;
+}
+
+.feature-card h3 {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: #000;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* About Section */
+.about-section {
+  background: #000;
+  color: #fff;
+  padding: 80px 20px;
+  text-align: center;
+}
+
+.about-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.about-content h2 {
+  font-size: 36px;
+  font-weight: 900;
+  margin-bottom: 30px;
+  letter-spacing: 2px;
+}
+
+.about-content p {
+  font-size: 18px;
+  line-height: 1.6;
+  margin-bottom: 50px;
+  opacity: 0.9;
+}
+
+.tech-stack h3 {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 30px;
+  letter-spacing: 1px;
+}
+
+.tech-items {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.tech-item {
+  background: #fff;
+  color: #000;
+  padding: 12px 24px;
+  font-weight: 700;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border: 2px solid #fff;
+  transition: all 0.3s ease;
+}
+
+.tech-item:hover {
+  background: #000;
+  color: #fff;
+  transform: translateY(-4px);
+}
+
+/* CTA Section */
+.cta-section {
+  padding: 80px 20px;
+  text-align: center;
+  background: #f8f8f8;
+  border-top: 3px solid #000;
+  border-bottom: 3px solid #000;
+}
+
+.cta-section h2 {
+  font-size: 36px;
+  font-weight: 900;
+  margin-bottom: 20px;
+  letter-spacing: 2px;
+  color: #000;
+}
+
+.cta-section p {
+  font-size: 18px;
+  margin-bottom: 40px;
+  color: #666;
+}
+
+.cta-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+}
+
+/* Footer */
+.footer {
+  background: #000;
+  color: #fff;
+  padding: 60px 20px 20px;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 40px;
+  margin-bottom: 40px;
+}
+
+.footer-section h3 {
+  font-size: 24px;
+  font-weight: 900;
+  margin-bottom: 20px;
+  letter-spacing: 2px;
+}
+
+.footer-section h4 {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 15px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.footer-section p {
+  opacity: 0.8;
+  line-height: 1.6;
+}
+
+.footer-section ul {
+  list-style: none;
+}
+
+.footer-section li {
+  margin-bottom: 8px;
+  opacity: 0.8;
+}
+
+.footer-section a {
+  color: #fff;
+  text-decoration: none;
+  transition: opacity 0.3s ease;
+}
+
+.footer-section a:hover {
+  opacity: 0.6;
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 20px;
+  border-top: 1px solid #333;
+  opacity: 0.8;
 }
 
 .auth-page {

@@ -12,9 +12,42 @@ import ErrorBoundary from './components/ErrorBoundary';
 function Landing() {
   return (
     <div className="landing">
-      <header className="header">
-        <h1>Hostel Room Allotment System</h1>
-        <p>Student accommodation management portal</p>
+      <nav className="navbar">
+        <div className="nav-container">
+          <div className="nav-logo">
+            <h2>HOSTEL SYSTEM</h2>
+          </div>
+          <div className="nav-links">
+            <a href="#features" className="nav-link">Features</a>
+            <a href="#about" className="nav-link">About</a>
+            <a href="#contact" className="nav-link">Contact</a>
+            <div className="nav-auth">
+              <Link to="/login" className="nav-btn login-nav-btn">Login</Link>
+              <Link to="/signup" className="nav-btn signup-nav-btn">Register</Link>
+            </div>
+          </div>
+        </div>
+      </nav>
+      
+      <header className="hero-section">
+        <div className="hero-content">
+          <h1>HOSTEL ROOM ALLOTMENT SYSTEM</h1>
+          <p>Modern digital platform for seamless student accommodation management</p>
+          <div className="hero-stats">
+            <div className="stat-item">
+              <span className="stat-number">24</span>
+              <span className="stat-label">Rooms Available</span>
+            </div>
+            <div className="stat-item">
+              <span className="stat-number">3</span>
+              <span className="stat-label">Hostels</span>
+            </div>
+            <div className="stat-item">
+              <span className="stat-number">100%</span>
+              <span className="stat-label">Digital</span>
+            </div>
+          </div>
+        </div>
       </header>
       
       <main className="main">
@@ -24,37 +57,116 @@ function Landing() {
             <p>Digital platform for managing hostel room assignments and student applications.</p>
           </section>
           
-          <div className="modules">
-            <div className="module">
-              <h3>Student Portal</h3>
-              <ul>
-                <li>Browse available rooms</li>
-                <li>Submit room applications</li>
-                <li>View assignment status</li>
-              </ul>
+          <section id="features" className="features-section">
+            <h2>SYSTEM FEATURES</h2>
+            <div className="features-grid">
+              <div className="feature-card">
+                <div className="feature-icon">👨🎓</div>
+                <h3>Student Portal</h3>
+                <ul>
+                  <li>Browse available rooms</li>
+                  <li>Submit room applications</li>
+                  <li>Track application status</li>
+                  <li>Profile management</li>
+                  <li>Real-time notifications</li>
+                </ul>
+              </div>
+              
+              <div className="feature-card">
+                <div className="feature-icon">👨💼</div>
+                <h3>Admin Panel</h3>
+                <ul>
+                  <li>Room inventory management</li>
+                  <li>Application processing</li>
+                  <li>User management</li>
+                  <li>System analytics</li>
+                  <li>Report generation</li>
+                </ul>
+              </div>
+              
+              <div className="feature-card">
+                <div className="feature-icon">🏠</div>
+                <h3>Room Management</h3>
+                <ul>
+                  <li>Multiple hostel support</li>
+                  <li>Gender-based allocation</li>
+                  <li>Year-wise room grouping</li>
+                  <li>Capacity tracking</li>
+                  <li>Availability monitoring</li>
+                </ul>
+              </div>
             </div>
-            
-            <div className="module">
-              <h3>Admin Panel</h3>
-              <ul>
-                <li>Room inventory management</li>
-                <li>Application processing</li>
-                <li>System reports</li>
-              </ul>
-            </div>
-          </div>
+          </section>
           
-          <div className="auth-section">
-            <div className="auth-buttons">
+          <section id="about" className="about-section">
+            <div className="about-content">
+              <h2>ABOUT THE SYSTEM</h2>
+              <p>Our Hostel Room Allotment System revolutionizes student accommodation management with a modern, digital-first approach. Built with cutting-edge technology, it ensures fair, transparent, and efficient room allocation for all students.</p>
+              
+              <div className="tech-stack">
+                <h3>TECHNOLOGY STACK</h3>
+                <div className="tech-items">
+                  <span className="tech-item">React 18</span>
+                  <span className="tech-item">Node.js</span>
+                  <span className="tech-item">Express</span>
+                  <span className="tech-item">MySQL</span>
+                  <span className="tech-item">Prisma ORM</span>
+                  <span className="tech-item">JWT Auth</span>
+                </div>
+              </div>
+            </div>
+          </section>
+          
+          <section className="cta-section">
+            <h2>GET STARTED TODAY</h2>
+            <p>Join thousands of students using our digital hostel management system</p>
+            <div className="cta-buttons">
               <Link to="/login" className="btn login-btn">Login</Link>
               <Link to="/signup" className="btn signup-btn">Register</Link>
             </div>
-          </div>
+          </section>
         </div>
       </main>
       
-      <footer className="footer">
-        <p>Devs Team | Node.js + React + MySQL</p>
+      <footer id="contact" className="footer">
+        <div className="footer-content">
+          <div className="footer-section">
+            <h3>HOSTEL SYSTEM</h3>
+            <p>Modern digital platform for student accommodation management</p>
+          </div>
+          
+          <div className="footer-section">
+            <h4>QUICK LINKS</h4>
+            <ul>
+              <li><a href="#features">Features</a></li>
+              <li><a href="#about">About</a></li>
+              <li><Link to="/login">Login</Link></li>
+              <li><Link to="/signup">Register</Link></li>
+            </ul>
+          </div>
+          
+          <div className="footer-section">
+            <h4>CONTACT INFO</h4>
+            <ul>
+              <li>Email: support@hostelsystem.com</li>
+              <li>Phone: +91 98765 43210</li>
+              <li>Address: College Campus, City</li>
+            </ul>
+          </div>
+          
+          <div className="footer-section">
+            <h4>TECH STACK</h4>
+            <ul>
+              <li>React 18 + Node.js</li>
+              <li>Express + MySQL</li>
+              <li>Prisma ORM + JWT</li>
+            </ul>
+          </div>
+        </div>
+        
+        <div className="footer-bottom">
+          <p>&copy; 2024 Hostel Room Allotment System. Built with ❤️ by Team Devs</p>
+        </div>
       </footer>
     </div>
   );
