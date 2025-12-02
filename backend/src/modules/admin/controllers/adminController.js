@@ -66,3 +66,24 @@ exports.allAllotments = async (req, res) => {
    res.status(500).json({ error: 'Server error' });
  }
 };
+
+exports.getDashboardStats = async (req, res) => {
+ try {
+   const totalUsers = await prisma.user.count({ where: { role: 'student' } });
+   const totalRooms = await prisma.room.count();
+   const availableRooms = await prisma.room.count({ where: { status: 'Available' } });
+   const pendingApplications = await prisma.allotment.count({ where: { status: 'pending' } });
+   const approvedApplications = await prisma.allotment.count({ where: { status: 'approved' } });
+  
+   res.json({
+     totalUsers,
+     totalRooms,
+     availableRooms,
+     pendingApplications,
+     approvedApplications
+   });
+ } catch (error) {
+   console.error(error);
+   res.status(500).json({ error: 'Server error' });
+ }
+};
