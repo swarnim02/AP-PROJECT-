@@ -10,7 +10,7 @@ services:
       - key: PORT
         value: 5002
       - key: DATABASE_URL
-        value: postgresql://postgres.psszemtgeiyoajhsmthx:IshitaSupabase@aws-1-ap-southeast-1.pooler.supabase.com:6543/postgres?pgbouncer=true
+        value: postgresql://postgres.psszemtgeiyoajhsmthx:IshitaSupabase@aws-1-ap-southeast-1.pooler.supabase.com:5432/postgres
       - key: DIRECT_URL
         value: postgresql://postgres.psszemtgeiyoajhsmthx:IshitaSupabase@aws-1-ap-southeast-1.pooler.supabase.com:5432/postgres
       - key: JWT_SECRET
