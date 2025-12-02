@@ -150,16 +150,147 @@ exports.adminApprove = async (req, res) => {
  }
 };
 
+// ADMIN — REJECT ALLOTMENT
+exports.adminReject = async (req, res) => {
+ try {
+   const allotmentId = parseInt(req.params.allotmentId);
+
+   await prisma.allotment.update({
+     where: { id: allotmentId },
+     data: { status: 'rejected' }
+   });
+
+   res.json({ message: 'Allotment rejected' });
+
+ } catch (error) {
+   console.error(error);
+   res.status(500).json({ error: 'Server error' });
+ }
+};
+
+// RANDOM ALLOCATION FOR 1ST YEAR STUDENTS
+exports.randomAllocate = async (req, res) => {
+ try {
+   const studentId = req.user.id;
+   console.log('=== RANDOM ALLOCATION DEBUG ===');
+   console.log('Student ID:', studentId);
+  
+   const student = await prisma.user.findUnique({
+     where: { id: studentId },
+     include: { allotments: true }
+   });
+
+   console.log('Student found:', {
+     id: student?.id,
+     year: student?.year,
+     gender: student?.gender,
+     profileApproved: student?.profileApproved,
+     allotmentsCount: student?.allotments?.length
+   });
+
+   if (!student) {
+     console.log('ERROR: Student not found');
+     return res.status(404).json({ message: 'Student not found' });
+   }
+
+   if (!student.profileApproved) {
+     console.log('ERROR: Profile not approved');
+     return res.status(400).json({ message: 'Profile must be approved before room allocation' });
+   }
+
+   if (student.year !== 1) {
+     console.log('ERROR: Not 1st year student');
+     return res.status(400).json({ message: 'Random allocation is only for 1st year students' });
+   }
+
+   // Check if student already has an allotment
+   if (student.allotments.length > 0) {
+     console.log('ERROR: Student already has allotment');
+     return res.status(400).json({ message: 'You already have a room allocated' });
+   }
+
+   const userGender = student.gender;
+   console.log('User gender:', userGender);
+  
+   // Find available rooms for the student
+   const availableRooms = await prisma.room.findMany({
+     where: {
+       status: 'Available',
+       yearGroup: { lte: student.year },
+       OR: [
+         { gender: userGender },
+         { gender: null } // Include rooms with no gender restriction
+       ]
+     },
+     include: { allotments: { where: { status: 'approved' } } }
+   });
+
+   console.log('Found rooms for random allocation:', availableRooms.length);
+   availableRooms.forEach(room => {
+     console.log(`Room ${room.roomNumber}: capacity=${room.capacity}, occupied=${room.allotments.length}`);
+   });
+
+   const roomsWithCapacity = availableRooms.filter(room =>
+     room.allotments.length < room.capacity
+   );
+  
+   console.log('Rooms with capacity:', roomsWithCapacity.length);
+
+   if (roomsWithCapacity.length === 0) {
+     console.log('No rooms with capacity found. Student details:', {
+       id: studentId,
+       year: student.year,
+       gender: student.gender,
+       profileApproved: student.profileApproved
+     });
+     return res.status(400).json({ message: 'No available rooms found for your criteria' });
+   }
+
+   // Select a random room
+   const randomIndex = Math.floor(Math.random() * roomsWithCapacity.length);
+   const selectedRoom = roomsWithCapacity[randomIndex];
+
+   // Create the allotment
+   const allotment = await prisma.allotment.create({
+     data: {
+       studentId,
+       roomId: selectedRoom.id,
+       status: 'approved'
+     },
+     include: {
+       room: true
+     }
+   });
+
+   // Update room status if capacity reached
+   if (selectedRoom.allotments.length + 1 >= selectedRoom.capacity) {
+     await prisma.room.update({
+       where: { id: selectedRoom.id },
+       data: { status: 'Occupied' }
+     });
+   }
+
+   res.json({
+     message: `Room ${selectedRoom.roomNumber} allocated successfully!`,
+     allotment
+   });
+
+ } catch (error) {
+   console.error('Random allocation error:', error);
+   res.status(500).json({ error: 'Server error during random allocation' });
+ }
+};
+
 // GET ALL ALLOTMENTS (ADMIN)
 exports.getAllAllotments = async (req, res) => {
-  try {
-    const data = await prisma.allotment.findMany({
-      include: { room: true, student: true }
-    });
+ try {
+   const data = await prisma.allotment.findMany({
+     include: { room: true, student: true }
+   });
 
-    res.json(data);
+   res.json(data);
 
-  } catch (err) {
-    res.status(500).json({ error: err });
-  }
+ } catch (err) {
+   res.status(500).json({ error: err });
+ }
 };
