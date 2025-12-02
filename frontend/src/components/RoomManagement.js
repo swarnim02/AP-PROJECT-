@@ -212,13 +212,12 @@ function RoomManagement() {
           .map(room => (
           <div key={room.id} className="room-card">
             <h4>Room {room.roomNumber}</h4>
-            <p>Capacity: {room.capacity} students</p>
-            <p>Year Group: {room.yearGroup}</p>
-            <p>Gender: {room.gender}</p>
-            <p>Hostel: {room.hostelName}</p>
-            <p>Occupied: {room.occupiedSeats || 0}/{room.capacity}</p>
-            <p>Status: {room.status}</p>
-            <p>Available: {room.isAvailable ? 'Yes' : 'No'}</p>
+            <p><strong>Capacity:</strong> <span>{room.capacity} students</span></p>
+            <p><strong>Year Group:</strong> <span>{room.yearGroup}</span></p>
+            <p><strong>Gender:</strong> <span>{room.gender}</span></p>
+            <p><strong>Hostel:</strong> <span>{room.hostelName}</span></p>
+            <p><strong>Occupied:</strong> <span>{room.occupiedSeats || 0}/{room.capacity}</span></p>
+            <p><strong>Status:</strong> <span className={`status-${room.status?.toLowerCase()}`}>{room.status}</span></p>
             
             <div className="room-actions">
               <button 

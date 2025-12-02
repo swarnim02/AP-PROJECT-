@@ -511,27 +511,71 @@ body {
 
 .room-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 24px;
 }
 
 .room-card {
-  background: #fafafa;
-  border: 1px solid #ddd;
+  background: #fff;
+  border: 2px solid #000;
   padding: 24px;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.room-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 8px 8px 0px #000;
 }
 
 .room-card h4 {
-  font-size: 18px;
-  font-weight: 500;
-  margin-bottom: 12px;
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 16px;
   color: #000;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-bottom: 2px solid #000;
+  padding-bottom: 8px;
 }
 
 .room-card p {
   font-size: 14px;
-  color: #666;
+  color: #000;
   margin-bottom: 8px;
+  font-weight: 500;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.room-card p strong {
+  font-weight: 700;
+}
+
+.room-card p span {
+  font-weight: 400;
+  color: #666;
+}
+
+.status-available {
+  background: #000;
+  color: #fff;
+  padding: 4px 8px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.status-occupied {
+  background: #666;
+  color: #fff;
+  padding: 4px 8px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .apply-btn {
@@ -676,71 +720,138 @@ body {
 
 .room-actions {
   display: flex;
-  gap: 10px;
-  margin-top: 16px;
+  gap: 12px;
+  margin-top: 24px;
+  justify-content: center;
+  align-items: center;
+  border-top: 2px solid #000;
+  padding-top: 16px;
 }
 
 .room-actions button {
-  padding: 8px 16px;
+  padding: 12px 20px;
   font-size: 12px;
+  font-weight: 700;
+  border: 2px solid #000;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  min-width: 90px;
+  cursor: pointer;
+}
+
+.room-actions .update-btn {
+  background: #000;
+  color: #fff;
+}
+
+.room-actions .update-btn:hover {
+  background: #fff;
+  color: #000;
+  transform: translateY(-2px);
+  box-shadow: 4px 4px 0px #000;
+}
+
+.room-actions .cancel-btn {
+  background: #fff;
+  color: #000;
+  border: 2px solid #000;
+}
+
+.room-actions .cancel-btn:hover {
+  background: #000;
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 4px 4px 0px #666;
 }
 
 /* Application Review Styles */
 .applications-list {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 20px;
 }
 
 .application-card {
-  background: #fafafa;
+  background: #fff;
   border: 1px solid #ddd;
-  padding: 20px;
+  border-radius: 8px;
+  padding: 24px;
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  transition: all 0.2s ease;
+}
+
+.application-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.app-info {
+  flex: 1;
 }
 
 .app-info h4 {
-  margin-bottom: 8px;
+  margin-bottom: 12px;
   color: #000;
+  font-size: 18px;
+  font-weight: 600;
 }
 
 .app-info p {
-  margin-bottom: 4px;
+  margin-bottom: 6px;
   font-size: 14px;
   color: #666;
+  line-height: 1.4;
 }
 
 .app-actions {
   display: flex;
-  gap: 10px;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 120px;
+  align-items: stretch;
 }
 
 .approve-btn {
-  background: #000;
+  background: #28a745;
   color: #fff;
   border: none;
-  padding: 8px 16px;
-  font-size: 12px;
+  padding: 10px 16px;
+  font-size: 13px;
+  font-weight: 500;
   cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .approve-btn:hover {
-  background: #333;
+  background: #218838;
+  transform: translateY(-1px);
 }
 
 .reject-btn {
   background: #fff;
-  color: #000;
-  border: 1px solid #000;
-  padding: 8px 16px;
-  font-size: 12px;
+  color: #dc3545;
+  border: 1px solid #dc3545;
+  padding: 10px 16px;
+  font-size: 13px;
+  font-weight: 500;
   cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .reject-btn:hover {
-  background: #f5f5f5;
+  background: #dc3545;
+  color: #fff;
+  transform: translateY(-1px);
 }
 
 .no-data {
@@ -754,32 +865,39 @@ body {
 .users-table {
   border: 1px solid #ddd;
   background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .table-header {
   display: grid;
-  grid-template-columns: 2fr 2fr 1fr 1fr 1fr 1.5fr;
+  grid-template-columns: 2fr 2fr 1.2fr 1fr 1fr;
   background: #000;
   color: #fff;
-  padding: 16px 20px;
-  font-weight: 500;
-  font-size: 14px;
+  padding: 18px 20px;
+  font-weight: 600;
+  font-size: 13px;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.8px;
+  align-items: center;
 }
 
 .table-row {
   display: grid;
-  grid-template-columns: 2fr 2fr 1fr 1fr 1fr 1.5fr;
-  padding: 16px 20px;
+  grid-template-columns: 2fr 2fr 1.2fr 1fr 1fr;
+  padding: 18px 20px;
   border-bottom: 1px solid #eee;
   font-size: 14px;
   align-items: center;
-  transition: background 0.2s;
+  transition: all 0.2s ease;
+  min-height: 60px;
 }
 
 .table-row:hover {
-  background: #fafafa;
+  background: #f8f9fa;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
 .table-row:last-child {
