@@ -9,17 +9,27 @@ const {
 // CREATE ROOM (ADMIN)
 exports.createRoom = async (req, res) => {
   try {
-    const { roomNumber, capacity, yearGroup } = req.body;
+    const { roomNumber, capacity, yearGroup, gender, hostelName } = req.body;
 
     const err = validateRoomInput(roomNumber, capacity, yearGroup);
     if (err) return res.status(400).json({ message: err });
+
+    if (!gender) {
+      return res.status(400).json({ message: "Gender is required" });
+    }
+
+    if (!hostelName) {
+      return res.status(400).json({ message: "Hostel name is required" });
+    }
 
     const room = await prisma.room.create({
       data: {
         roomNumber,
         capacity,
-        status: "Available", // default
-        yearGroup
+        status: "Available",
+        yearGroup,
+        gender,
+        hostelName
       }
     });
 
@@ -37,7 +47,7 @@ exports.createRoom = async (req, res) => {
 exports.updateRoom = async (req, res) => {
   try {
     let id = parseInt(req.params.id);
-    const { capacity, yearGroup, status } = req.body;
+    const { capacity, yearGroup, status, gender } = req.body;
 
     const room = await prisma.room.findUnique({
       where: { id },
@@ -59,7 +69,8 @@ exports.updateRoom = async (req, res) => {
       data: {
         capacity: capacity || room.capacity,
         yearGroup: yearGroup || room.yearGroup,
-        status: status || room.status
+        status: status || room.status,
+        gender: gender || room.gender
       }
     });
 
@@ -104,9 +115,23 @@ exports.deleteRoom = async (req, res) => {
 exports.getAllRooms = async (req, res) => {
   try {
     const rooms = await prisma.room.findMany({
-      include: { allotments: true }
+      include: { 
+        allotments: { 
+          where: { status: 'approved' },
+          include: { student: { select: { name: true } } }
+        }
+      }
     });
-    res.json(rooms);
+    
+    // Add vacancy information
+    const roomsWithVacancy = rooms.map(room => ({
+      ...room,
+      occupiedSeats: room.allotments.length,
+      vacantSeats: room.capacity - room.allotments.length,
+      isAvailable: room.allotments.length < room.capacity
+    }));
+    
+    res.json(roomsWithVacancy);
   } catch (error) {
     console.log(error);
     res.status(500).json({ error });

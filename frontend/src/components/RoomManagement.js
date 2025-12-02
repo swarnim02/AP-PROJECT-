@@ -9,8 +9,11 @@ function RoomManagement() {
   const [formData, setFormData] = useState({
     roomNumber: '',
     capacity: '',
-    yearGroup: ''
+    yearGroup: '',
+    gender: '',
+    hostelName: ''
   });
+  const [genderFilter, setGenderFilter] = useState('all');
 
   useEffect(() => {
     fetchRooms();
@@ -53,7 +56,7 @@ function RoomManagement() {
       
       setShowForm(false);
       setEditingRoom(null);
-      setFormData({ roomNumber: '', capacity: '', yearGroup: '' });
+      setFormData({ roomNumber: '', capacity: '', yearGroup: '', gender: '', hostelName: '' });
       fetchRooms();
     } catch (error) {
       console.error('Error saving room:', error);
@@ -65,7 +68,9 @@ function RoomManagement() {
     setFormData({
       roomNumber: room.roomNumber,
       capacity: room.capacity.toString(),
-      yearGroup: room.yearGroup.toString()
+      yearGroup: room.yearGroup.toString(),
+      gender: room.gender || '',
+      hostelName: room.hostelName || ''
     });
     setShowForm(true);
   };
@@ -91,12 +96,30 @@ function RoomManagement() {
     <div className="content-page">
       <div className="content-header">
         <h2>Room Management</h2>
-        <button 
-          className="submit-btn" 
-          onClick={() => setShowForm(true)}
-        >
-          Add New Room
-        </button>
+        <div className="header-actions">
+          <select 
+            value={genderFilter} 
+            onChange={(e) => setGenderFilter(e.target.value)}
+            className="filter-select"
+          >
+            <option value="all">All Rooms</option>
+            <option value="Male">Male Rooms</option>
+            <option value="Female">Female Rooms</option>
+          </select>
+          <button 
+            className="update-btn" 
+            onClick={fetchRooms}
+            style={{marginRight: '10px'}}
+          >
+            Refresh
+          </button>
+          <button 
+            className="submit-btn" 
+            onClick={() => setShowForm(true)}
+          >
+            Add New Room
+          </button>
+        </div>
       </div>
 
       {showForm && (
@@ -139,6 +162,30 @@ function RoomManagement() {
               </select>
             </div>
             
+            <div className="form-group">
+              <label>Gender</label>
+              <select
+                value={formData.gender}
+                onChange={(e) => setFormData({...formData, gender: e.target.value})}
+                required
+              >
+                <option value="">Select Gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+              </select>
+            </div>
+            
+            <div className="form-group">
+              <label>Hostel Name</label>
+              <input
+                type="text"
+                value={formData.hostelName}
+                onChange={(e) => setFormData({...formData, hostelName: e.target.value})}
+                placeholder="e.g., Sunrise Hostel, Moonlight Hostel"
+                required
+              />
+            </div>
+            
             <div className="form-actions">
               <button type="submit" className="submit-btn">
                 {editingRoom ? 'Update' : 'Create'}
@@ -149,7 +196,7 @@ function RoomManagement() {
                 onClick={() => {
                   setShowForm(false);
                   setEditingRoom(null);
-                  setFormData({ roomNumber: '', capacity: '', yearGroup: '' });
+                  setFormData({ roomNumber: '', capacity: '', yearGroup: '', gender: '', hostelName: '' });
                 }}
               >
                 Cancel
@@ -160,12 +207,18 @@ function RoomManagement() {
       )}
 
       <div className="room-grid">
-        {rooms.map(room => (
+        {rooms
+          .filter(room => genderFilter === 'all' || room.gender === genderFilter)
+          .map(room => (
           <div key={room.id} className="room-card">
             <h4>Room {room.roomNumber}</h4>
             <p>Capacity: {room.capacity} students</p>
             <p>Year Group: {room.yearGroup}</p>
+            <p>Gender: {room.gender}</p>
+            <p>Hostel: {room.hostelName}</p>
+            <p>Occupied: {room.occupiedSeats || 0}/{room.capacity}</p>
             <p>Status: {room.status}</p>
+            <p>Available: {room.isAvailable ? 'Yes' : 'No'}</p>
             
             <div className="room-actions">
               <button 

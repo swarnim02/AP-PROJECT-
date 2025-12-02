@@ -2,20 +2,88 @@ const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 
 exports.allUsers = async (req, res) => {
-  const data = await prisma.user.findMany();
-  res.json(data);
+  try {
+    const users = await prisma.user.findMany({
+      select: {
+        id: true,
+        name: true,
+        email: true,
+        role: true,
+        college: true,
+        year: true,
+        gender: true,
+        profileApproved: true,
+        phone: true,
+        address: true,
+        guardianName: true,
+        guardianPhone: true
+      }
+    });
+    res.json({ users });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Server error' });
+  }
 };
 
 exports.allRooms = async (req, res) => {
-  const data = await prisma.room.findMany({
-    include: { allotments: true }
-  });
-  res.json(data);
+  try {
+    const rooms = await prisma.room.findMany({
+      include: { 
+        allotments: {
+          where: { status: 'approved' }
+        }
+      }
+    });
+    
+    // Add occupied count and availability status
+    const roomsWithStats = rooms.map(room => ({
+      ...room,
+      occupiedSeats: room.allotments.length,
+      isAvailable: room.allotments.length < room.capacity
+    }));
+    
+    res.json({ rooms: roomsWithStats });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Server error' });
+  }
 };
 
 exports.allAllotments = async (req, res) => {
-  const data = await prisma.allotment.findMany({
-    include: { student: true, room: true }
-  });
-  res.json(data);
+  try {
+    const allotments = await prisma.allotment.findMany({
+      include: { 
+        student: {
+          select: { id: true, name: true, email: true, year: true, gender: true }
+        }, 
+        room: true 
+      }
+    });
+    res.json({ allotments });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Server error' });
+  }
+};
+
+exports.getDashboardStats = async (req, res) => {
+  try {
+    const totalUsers = await prisma.user.count({ where: { role: 'student' } });
+    const totalRooms = await prisma.room.count();
+    const availableRooms = await prisma.room.count({ where: { status: 'Available' } });
+    const pendingApplications = await prisma.allotment.count({ where: { status: 'pending' } });
+    const approvedApplications = await prisma.allotment.count({ where: { status: 'approved' } });
+    
+    res.json({
+      totalUsers,
+      totalRooms,
+      availableRooms,
+      pendingApplications,
+      approvedApplications
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Server error' });
+  }
 };

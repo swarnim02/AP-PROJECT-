@@ -2,8 +2,8 @@ function AdminSidebar({ activeTab, setActiveTab }) {
   const menuItems = [
     { id: 'overview', label: 'Dashboard' },
     { id: 'rooms', label: 'Room Management' },
-    { id: 'applications', label: 'Applications' },
-    { id: 'users', label: 'User Management' }
+    { id: 'users', label: 'User Management' },
+    { id: 'profiles', label: 'Profile Approval' }
   ];
 
   return (

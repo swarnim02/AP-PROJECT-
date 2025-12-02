@@ -8,15 +8,24 @@ datasource db {
 }
 
 model User {
-  id       Int    @id @default(autoincrement())
-  name     String
-  email    String @unique
-  password String
-  role     String
-  college  String?
-  year     Int?
+  id              Int    @id @default(autoincrement())
+  name            String
+  email           String @unique
+  password        String
+  role            String
+  college         String?
+  year            Int?
+  gender          String?
+  profileApproved Boolean?
+  phone           String?
+  address         String?
+  guardianName    String?
+  guardianPhone   String?
+  switchCount     Int    @default(0)
   
   allotments Allotment[]
+  switchRequestsInitiated RoomSwitch[] @relation("InitiatedBy")
+  switchRequestsReceived  RoomSwitch[] @relation("RequestedWith")
 }
 
 model Room {
@@ -25,16 +34,37 @@ model Room {
   capacity   Int
   status     String
   yearGroup  Int?
+  gender     String?
+  hostelName String?
   
   allotments Allotment[]
+  switchRequestsAsInitiator RoomSwitch[] @relation("InitiatorRoom")
+  switchRequestsAsRequested RoomSwitch[] @relation("RequestedRoom")
 }
 
 model Allotment {
   id              Int      @id @default(autoincrement())
   studentId       Int
-  roomId          Int
+  roomId          Int?
   dateOfAllotment DateTime @default(now())
+  status          String   @default("pending")
   
   student User @relation(fields: [studentId], references: [id])
-  room    Room @relation(fields: [roomId], references: [id])
+  room    Room? @relation(fields: [roomId], references: [id])
+}
+
+model RoomSwitch {
+  id              Int      @id @default(autoincrement())
+  initiatedBy     Int
+  requestedWith   Int
+  initiatorRoomId Int
+  requestedRoomId Int
+  status          String   @default("pending") // pending, approved, rejected
+  reason          String?
+  createdAt       DateTime @default(now())
+  
+  initiator       User @relation("InitiatedBy", fields: [initiatedBy], references: [id])
+  requestedUser   User @relation("RequestedWith", fields: [requestedWith], references: [id])
+  initiatorRoom   Room @relation("InitiatorRoom", fields: [initiatorRoomId], references: [id])
+  requestedRoom   Room @relation("RequestedRoom", fields: [requestedRoomId], references: [id])
 }

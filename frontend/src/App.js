@@ -162,6 +162,7 @@ function Signup() {
     email: '',
     college: '',
     year: '',
+    gender: '',
     password: ''
   });
   const [error, setError] = useState('');
@@ -288,6 +289,20 @@ function Signup() {
               <option value="2">2nd Year</option>
               <option value="3">3rd Year</option>
               <option value="4">4th Year</option>
+            </select>
+          </div>
+          
+          <div className="form-group">
+            <label>Gender</label>
+            <select 
+              name="gender"
+              value={formData.gender}
+              onChange={handleChange}
+              required
+            >
+              <option value="">Select Gender</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
             </select>
           </div>
           

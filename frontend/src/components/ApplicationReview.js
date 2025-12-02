@@ -12,7 +12,7 @@ function ApplicationReview() {
   const fetchApplications = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:5002/allotment/all', {
+      const response = await fetch('http://localhost:5002/admin/allotments', {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const data = await response.json();
@@ -23,10 +23,10 @@ function ApplicationReview() {
     setLoading(false);
   };
 
-  const handleApprove = async (studentId) => {
+  const handleApprove = async (allotmentId) => {
     try {
       const token = localStorage.getItem('token');
-      await fetch(`http://localhost:5002/allotment/approve/${studentId}`, {
+      await fetch(`http://localhost:5002/allotment/approve/${allotmentId}`, {
         method: 'POST',
         headers: { 'Authorization': `Bearer ${token}` }
       });
@@ -69,25 +69,35 @@ function ApplicationReview() {
               <div className="app-info">
                 <h4>{app.student?.name || 'Unknown Student'}</h4>
                 <p>Email: {app.student?.email}</p>
-                <p>College: {app.student?.college}</p>
                 <p>Year: {app.student?.year}</p>
-                <p>Room: {app.room?.roomNumber}</p>
+                <p>Gender: {app.student?.gender}</p>
+                <p>Room: {app.room?.roomNumber || 'Not assigned'}</p>
+                <p>Status: <span className={`status-${app.status}`}>{app.status}</span></p>
                 <p>Applied: {new Date(app.dateOfAllotment).toLocaleDateString()}</p>
               </div>
               
               <div className="app-actions">
-                <button 
-                  className="approve-btn"
-                  onClick={() => handleApprove(app.studentId)}
-                >
-                  Approve
-                </button>
-                <button 
-                  className="reject-btn"
-                  onClick={() => handleReject(app.id)}
-                >
-                  Reject
-                </button>
+                {app.status === 'pending' && (
+                  <>
+                    <button 
+                      className="approve-btn"
+                      onClick={() => handleApprove(app.id)}
+                    >
+                      Approve
+                    </button>
+                    <button 
+                      className="reject-btn"
+                      onClick={() => handleReject(app.id)}
+                    >
+                      Reject
+                    </button>
+                  </>
+                )}
+                {app.status !== 'pending' && (
+                  <span className={`status-badge status-${app.status}`}>
+                    {app.status.toUpperCase()}
+                  </span>
+                )}
               </div>
             </div>
           ))
