@@ -28,6 +28,11 @@ app.get("/", (req, res) => {
   res.send("Hostel Backend Running 🚀");
 });
 
+// Health check endpoint
+app.get("/health", (req, res) => {
+  res.json({ status: 'OK', timestamp: new Date().toISOString() });
+});
+
 app.get("/direct-test", (req, res) => {
   res.json({ message: "Direct route working" });
 });
