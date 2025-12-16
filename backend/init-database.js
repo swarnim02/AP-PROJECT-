@@ -2,14 +2,7 @@ require('dotenv').config();
 const { PrismaClient } = require('@prisma/client');
 const bcrypt = require('bcrypt');
 
-// Create a fresh Prisma client instance for initialization
-const prisma = new PrismaClient({
-  datasources: {
-    db: {
-      url: process.env.DATABASE_URL,
-    },
-  },
-});
+const prisma = new PrismaClient();
 
 async function initDatabase() {
   try {
@@ -19,9 +12,6 @@ async function initDatabase() {
     await prisma.$connect();
     console.log('✅ Database connected');
 
-    // Use Prisma's db push to sync schema instead of raw SQL
-    console.log('🔄 Syncing database schema...');
-    
     // Create admin user
     const adminExists = await prisma.user.findUnique({
       where: { email: 'admin@hostel.com' }
@@ -46,21 +36,45 @@ async function initDatabase() {
       console.log('✅ Admin user already exists');
     }
 
-    // Create sample rooms
+    // Create sample rooms for both boys and girls
     const roomCount = await prisma.room.count();
     if (roomCount === 0) {
       const sampleRooms = [
-        { roomNumber: '101', capacity: 2, yearGroup: 1, gender: 'Male', hostelName: 'Sunrise Hostel', status: 'Available' },
-        { roomNumber: '102', capacity: 2, yearGroup: 1, gender: 'Male', hostelName: 'Sunrise Hostel', status: 'Available' },
-        { roomNumber: '103', capacity: 2, yearGroup: 1, gender: 'Female', hostelName: 'Moonlight Hostel', status: 'Available' },
-        { roomNumber: '201', capacity: 3, yearGroup: 2, gender: 'Male', hostelName: 'Sunrise Hostel', status: 'Available' },
-        { roomNumber: '202', capacity: 3, yearGroup: 2, gender: 'Female', hostelName: 'Moonlight Hostel', status: 'Available' }
+        // Boys rooms - Year 1
+        { roomNumber: 'B101', capacity: 2, yearGroup: 1, gender: 'Male', hostelName: 'Sunrise Boys Hostel', status: 'Available' },
+        { roomNumber: 'B102', capacity: 2, yearGroup: 1, gender: 'Male', hostelName: 'Sunrise Boys Hostel', status: 'Available' },
+        { roomNumber: 'B103', capacity: 3, yearGroup: 1, gender: 'Male', hostelName: 'Sunrise Boys Hostel', status: 'Available' },
+        { roomNumber: 'B104', capacity: 2, yearGroup: 1, gender: 'Male', hostelName: 'Sunrise Boys Hostel', status: 'Available' },
+        
+        // Boys rooms - Year 2
+        { roomNumber: 'B201', capacity: 3, yearGroup: 2, gender: 'Male', hostelName: 'Sunrise Boys Hostel', status: 'Available' },
+        { roomNumber: 'B202', capacity: 2, yearGroup: 2, gender: 'Male', hostelName: 'Sunrise Boys Hostel', status: 'Available' },
+        { roomNumber: 'B203', capacity: 3, yearGroup: 2, gender: 'Male', hostelName: 'Sunrise Boys Hostel', status: 'Available' },
+        
+        // Boys rooms - Year 3
+        { roomNumber: 'B301', capacity: 2, yearGroup: 3, gender: 'Male', hostelName: 'Sunrise Boys Hostel', status: 'Available' },
+        { roomNumber: 'B302', capacity: 3, yearGroup: 3, gender: 'Male', hostelName: 'Sunrise Boys Hostel', status: 'Available' },
+        
+        // Girls rooms - Year 1
+        { roomNumber: 'G101', capacity: 2, yearGroup: 1, gender: 'Female', hostelName: 'Moonlight Girls Hostel', status: 'Available' },
+        { roomNumber: 'G102', capacity: 2, yearGroup: 1, gender: 'Female', hostelName: 'Moonlight Girls Hostel', status: 'Available' },
+        { roomNumber: 'G103', capacity: 3, yearGroup: 1, gender: 'Female', hostelName: 'Moonlight Girls Hostel', status: 'Available' },
+        { roomNumber: 'G104', capacity: 2, yearGroup: 1, gender: 'Female', hostelName: 'Moonlight Girls Hostel', status: 'Available' },
+        
+        // Girls rooms - Year 2
+        { roomNumber: 'G201', capacity: 3, yearGroup: 2, gender: 'Female', hostelName: 'Moonlight Girls Hostel', status: 'Available' },
+        { roomNumber: 'G202', capacity: 2, yearGroup: 2, gender: 'Female', hostelName: 'Moonlight Girls Hostel', status: 'Available' },
+        { roomNumber: 'G203', capacity: 3, yearGroup: 2, gender: 'Female', hostelName: 'Moonlight Girls Hostel', status: 'Available' },
+        
+        // Girls rooms - Year 3
+        { roomNumber: 'G301', capacity: 2, yearGroup: 3, gender: 'Female', hostelName: 'Moonlight Girls Hostel', status: 'Available' },
+        { roomNumber: 'G302', capacity: 3, yearGroup: 3, gender: 'Female', hostelName: 'Moonlight Girls Hostel', status: 'Available' }
       ];
 
       for (const room of sampleRooms) {
         await prisma.room.create({ data: room });
       }
-      console.log('✅ Sample rooms created');
+      console.log('✅ Sample rooms created (18 rooms total - 9 boys, 9 girls)');
     } else {
       console.log('✅ Rooms already exist');
     }
