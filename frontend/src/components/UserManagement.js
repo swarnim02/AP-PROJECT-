@@ -22,7 +22,7 @@ function UserManagement() {
       console.log('Fetching users data...');
       
       // Fetch users
-      const usersResponse = await fetch('https://ap-project-v67b.onrender.com/admin/users', {
+      const usersResponse = await fetch(`${process.env.REACT_APP_API_URL || 'http://localhost:5002'}/admin/users`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       
@@ -37,7 +37,7 @@ function UserManagement() {
       setUsers(usersData.users || []);
 
       // Fetch allotments
-      const allotmentsResponse = await fetch('https://ap-project-v67b.onrender.com/admin/allotments', {
+      const allotmentsResponse = await fetch(`${process.env.REACT_APP_API_URL || 'http://localhost:5002'}/admin/allotments`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       

@@ -1,4 +1,4 @@
-import { Link, Routes, Route } from 'react-router-dom';
+import { } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { showNotification } from './Notification';
 import ProfileForm from './ProfileForm';
@@ -62,7 +62,7 @@ function Overview() {
       
       // Fetch user profile
       try {
-        const profileResponse = await fetch('https://ap-project-v67b.onrender.com/auth/my-profile', {
+        const profileResponse = await fetch(`${process.env.REACT_APP_API_URL || 'http://localhost:5002'}/auth/my-profile`, {
           headers: { 'Authorization': `Bearer ${token}` }
         });
         if (profileResponse.ok) {
@@ -75,7 +75,7 @@ function Overview() {
       
       // Fetch my allotment
       try {
-        const allotmentResponse = await fetch('https://ap-project-v67b.onrender.com/allotment/my', {
+        const allotmentResponse = await fetch(`${process.env.REACT_APP_API_URL || 'http://localhost:5002'}/allotment/my`, {
           headers: { 'Authorization': `Bearer ${token}` }
         });
         if (allotmentResponse.ok) {
@@ -87,7 +87,7 @@ function Overview() {
       }
       
       // Fetch available rooms count
-      const roomsResponse = await fetch('https://ap-project-v67b.onrender.com/rooms/all', {
+      const roomsResponse = await fetch(`${process.env.REACT_APP_API_URL || 'http://localhost:5002'}/rooms/all`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const roomsData = await roomsResponse.json();
@@ -266,6 +266,7 @@ function RoomList() {
 
   useEffect(() => {
     checkProfileStatus();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const checkProfileStatus = async () => {
@@ -279,7 +280,7 @@ function RoomList() {
       const payload = JSON.parse(atob(token.split('.')[1]));
       setUserYear(payload.year || 1);
       
-      const response = await fetch('https://ap-project-v67b.onrender.com/auth/my-profile', {
+      const response = await fetch(`${process.env.REACT_APP_API_URL || 'http://localhost:5002'}/auth/my-profile`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       
@@ -307,7 +308,7 @@ function RoomList() {
   const checkMyAllotment = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('https://ap-project-v67b.onrender.com/allotment/my', {
+      const response = await fetch(`${process.env.REACT_APP_API_URL || 'http://localhost:5002'}/allotment/my`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       if (response.ok) {
@@ -327,7 +328,7 @@ function RoomList() {
         return;
       }
       
-      const response = await fetch('https://ap-project-v67b.onrender.com/rooms/all', {
+      const response = await fetch(`${process.env.REACT_APP_API_URL || 'http://localhost:5002'}/rooms/all`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       
@@ -348,7 +349,7 @@ function RoomList() {
   const handleApply = async (roomId) => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`https://ap-project-v67b.onrender.com/allotment/apply/${roomId}`, {
+      const response = await fetch(`${process.env.REACT_APP_API_URL || 'http://localhost:5002'}/allotment/apply/${roomId}`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -412,7 +413,7 @@ function RoomList() {
       
       try {
         const token = localStorage.getItem('token');
-        const response = await fetch('https://ap-project-v67b.onrender.com/allotment/random-allocate', {
+        const response = await fetch(`${process.env.REACT_APP_API_URL || 'http://localhost:5002'}/allotment/random-allocate`, {
           method: 'POST',
           headers: {
             'Authorization': `Bearer ${token}`,
@@ -583,7 +584,7 @@ function ApplicationStatus() {
   const [profileStatus, setProfileStatus] = useState(null);
   const [allotment, setAllotment] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [userDisapproved, setUserDisapproved] = useState(false);
+  const [, setUserDisapproved] = useState(false);
 
   useEffect(() => {
     fetchApplicationStatus();
@@ -596,7 +597,7 @@ function ApplicationStatus() {
       console.log('Fetching application status...');
       
       // Get user profile status using new endpoint
-      const profileResponse = await fetch('https://ap-project-v67b.onrender.com/auth/my-profile', {
+      const profileResponse = await fetch(`${process.env.REACT_APP_API_URL || 'http://localhost:5002'}/auth/my-profile`, {
         headers: { 
           'Authorization': `Bearer ${token}`
         }
@@ -625,7 +626,7 @@ function ApplicationStatus() {
       
       // Get allotment status
       try {
-        const allotmentResponse = await fetch('https://ap-project-v67b.onrender.com/allotment/my', {
+        const allotmentResponse = await fetch(`${process.env.REACT_APP_API_URL || 'http://localhost:5002'}/allotment/my`, {
           headers: { 'Authorization': `Bearer ${token}` }
         });
         if (allotmentResponse.ok) {
@@ -693,7 +694,7 @@ function ApplicationStatus() {
     }
   };
 
-  const statusInfo = getStatusDisplay();
+  getStatusDisplay();
 
   const getTimelineSteps = () => {
     return [
@@ -787,6 +788,7 @@ function ApplicationStatus() {
   );
 }
 
+// eslint-disable-next-line no-unused-vars
 function Profile() {
   const [formData, setFormData] = useState({
     name: 'Student Name',
@@ -805,7 +807,7 @@ function Profile() {
     e.preventDefault();
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('https://ap-project-v67b.onrender.com/auth/profile', {
+      const response = await fetch(`${process.env.REACT_APP_API_URL || 'http://localhost:5002'}/auth/profile`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

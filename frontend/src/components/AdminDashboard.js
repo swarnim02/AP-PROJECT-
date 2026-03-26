@@ -21,7 +21,7 @@ function AdminOverview() {
   const fetchDashboardStats = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('https://ap-project-v67b.onrender.com/admin/dashboard-stats', {
+      const response = await fetch(`${process.env.REACT_APP_API_URL || 'http://localhost:5002'}/admin/dashboard-stats`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const data = await response.json();

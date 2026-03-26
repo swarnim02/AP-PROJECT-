@@ -10,8 +10,6 @@ services:
       - key: PORT
         value: 5002
       - key: DATABASE_URL
-        value: postgresql://postgres.psszemtgeiyoajhsmthx:IshitaSupabase@aws-1-ap-southeast-1.pooler.supabase.com:5432/postgres
-      - key: DIRECT_URL
-        value: postgresql://postgres.psszemtgeiyoajhsmthx:IshitaSupabase@aws-1-ap-southeast-1.pooler.supabase.com:5432/postgres
+        value: postgresql://hostel_database_6v9w_user:2pjYEiyIXTcLldfE33t8lk64RlUiVkjX@dpg-d72cbmbuibrs73b9ikbg-a.oregon-postgres.render.com/hostel_database_6v9w
       - key: JWT_SECRET
         value: hostel_jwt_secret_key_2024
