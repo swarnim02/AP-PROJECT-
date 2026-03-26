@@ -3,4 +3,7 @@ services:
     name: hostel-frontend
     env: static
     buildCommand: npm install && npm run build
-    staticPublishPath: ./dist
+    staticPublishPath: ./build
+    envVars:
+      - key: REACT_APP_API_URL
+        value: https://ap-project-v67b.onrender.com
